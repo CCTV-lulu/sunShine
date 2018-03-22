@@ -1,0 +1,19 @@
+.grid-content{
+  margin-left: 30%;
+  margin-right: 35%;
+  padding-top: 8%;
+  height: 45%;
+  width: 50%;
+}
+.label{
+ float: left;
+}
+.inputTel{
+  float: right;
+}
+.big-button{
+  width: 100%;
+}
+.el-row{
+  margin-bottom: 10px;
+}
