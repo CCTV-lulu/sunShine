@@ -4,6 +4,7 @@
     <div class="noHave">
       <img src="@/assets/paragraph.svg"/>
       <p>暂时没有内容</p>
+      <p>read</p>
     </div>
   </div>
 </template>
@@ -11,7 +12,7 @@
 <script>
     import Siderbar from "@/components/SiderBar.vue" ;
     export default {
-        name: "music",
+        name: "read",
         data(){
           return{
 
@@ -20,12 +21,9 @@
         components: {
           sidebar: Siderbar
         },
-        watch:{
-          '$route':function(to){
-            console.log('-------------')
-          }
-        },
     }
 </script>
 
-<style src="@/css/music.css"></style>
+<style scoped>
+
+</style>
