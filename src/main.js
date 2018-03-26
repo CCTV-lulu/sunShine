@@ -6,11 +6,14 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import SiderBar from '@/components/SiderBar'
+import Header from '@/components/Header'
+import 'lib-flexible/flexible.js'
 
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.component('SiderBar', SiderBar)
+Vue.component('Header',Header)
 
 /* eslint-disable no-new */
 new Vue({

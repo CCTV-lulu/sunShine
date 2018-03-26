@@ -1,16 +1,7 @@
 <template>
-  <div style="height: 100%">
-    <div class="header" height="8%">
-      <el-row >
-        <el-col :span="2">
-          <img class="menu" src="@/assets/menu.png"/>
-        </el-col>
-          <h3 style="float: left">阳光盒子</h3>
-      </el-row>
-    </div>
+  <div class="siderbar">
     <div class="aside">
-        <el-col :span="20" class="first-sider">
-          <el-menu class="el-menu-vertical-demo" style="border: none;width: 250px "  active-text-color="#f09038" :default-active="routepath" router="true">
+          <el-menu class="el-menu-vertical-demo first-sider" active-text-color="#f09038" :default-active="$route.path" :router="true">
             <p>科目</p>
             <el-menu-item index="/song">
               <img :src="songUrl">
@@ -50,7 +41,6 @@
               <span slot="title">艺术</span>
             </el-menu-item>
           </el-menu>
-        </el-col>
     </div>
   </div>
 </template>
@@ -68,14 +58,12 @@
           languageUrl: './static/image/language.svg',
           socialUrl: './static/image/social.svg',
           scienceUrl: './static/image/science.svg',
-          artUrl: './static/image/art.svg',
-          routepath:this.$route.path
+          artUrl: './static/image/art.svg'
         }
       },
       beforeMount: function () {
         var self = this
         var path = self.$route.path
-        self.routepath = path
         switch (path){
           case '/song':
             self.songUrl = "./static/image/songlight.svg";
@@ -186,20 +174,20 @@
 </script>
 
 <style scoped>
-  .menu{
-    margin-top: 16px;
-  }
-  .header{
-    border-bottom   : darkgray solid 1px;
+  .siderbar{
+    position: fixed;
+    margin-top: 100px;
   }
   .aside{
     float: left;
-    width: 250px !important;
+    width: 250px;
     height: 92%;
   }
   .first-sider{
     margin-top: 40px;
     margin-bottom: 50px;
+    border: none;
+    width: 250px;
   }
   img{
     margin-right: 20px;

@@ -1,15 +1,17 @@
 <template>
-  <div>
+  <div id="app">
     <SiderBar/>
-    <div class="noHave">
-      <img src="@/assets/paragraph.svg"/>
-      <p>暂时没有内容</p>
+    <div class="content">
+      <div class="noHave">
+        <img src="@/assets/paragraph.svg"/>
+        <p>暂时没有内容</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-    import Siderbar from "@/components/SiderBar.vue" ;
+    import SiderBar from "@/components/SiderBar.vue" ;
     export default {
         name: "music",
         data(){
@@ -18,12 +20,7 @@
           }
         },
         components: {
-          sidebar: Siderbar
-        },
-        watch:{
-          '$route':function(to){
-            console.log('-------------')
-          }
+          SiderBar: SiderBar
         },
     }
 </script>

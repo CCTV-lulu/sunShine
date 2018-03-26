@@ -4,6 +4,7 @@ import Login from '@/page/Login'
 import Song from '@/page/Song'
 import Music from '@/page/Music'
 import Read from '@/page/Read'
+import SongDetails from '@/page/SongDetails'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/read',
       name: 'Read',
       component: Read
+    },
+    {
+      path:'/songDetails',
+      name:'songDetails',
+      component:SongDetails
     }
 
   ]
