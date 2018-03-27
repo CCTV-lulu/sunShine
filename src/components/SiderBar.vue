@@ -138,7 +138,7 @@
             self.playUrl = './static/image/paly.svg';
             self.songUrl = "./static/image/song.svg";
             self.musicUrl = './static/image/music.svg';
-            self.readUrl = './static/image/read.svg';;
+            self.readUrl = './static/image/read.svg';
             self.scienceUrl = './static/image/science.svg';
             self.artUrl = './static/image/art.svg';
             break;
@@ -150,7 +150,7 @@
             self.playUrl = './static/image/paly.svg';
             self.songUrl = "./static/image/song.svg";
             self.musicUrl = './static/image/music.svg';
-            self.readUrl = './static/image/read.svg';;
+            self.readUrl = './static/image/read.svg';
             self.artUrl = './static/image/art.svg';
             break;
           case '/art':
@@ -162,7 +162,7 @@
             self.playUrl = './static/image/paly.svg';
             self.songUrl = "./static/image/song.svg";
             self.musicUrl = './static/image/music.svg';
-            self.readUrl = './static/image/read.svg';;
+            self.readUrl = './static/image/read.svg';
             break;
         }
 

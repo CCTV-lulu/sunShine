@@ -9,7 +9,7 @@
       </div>
       <div v-if="lessons.length > 0">
           <el-col :span="5" v-for="(item, index) in lessons" :key="index" style="margin-top: 10px">
-            <div  @click="details(item.id)">
+            <div  @click="details(item.id,item.name,item.planId)">
               <img src="@/assets/smile.png" />
               <div style="padding: 14px;">
                 <span>{{item.name}}</span>

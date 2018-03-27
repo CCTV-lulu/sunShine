@@ -25,7 +25,7 @@
     z-index: 100;
     background-color: white;
     border-bottom   : darkgray solid 1px;
-    height: 80px;
+    height: 70px;
     width: 100%;
   }
   h3{

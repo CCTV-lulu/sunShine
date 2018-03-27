@@ -1,0 +1,45 @@
+
+.menu{
+  margin-top: 16px;
+  float: left;
+  margin-left: 50px;
+  margin-right: 20px;
+}
+.head{
+  position: fixed;
+  z-index: 100;
+  background-color:white;
+  border-bottom   : darkgray solid 1px;
+  height: 70px;
+  width: 100%;
+  /*margin-top: -15px;*/
+}
+h3{
+  float: left
+}
+.detailBody{
+  padding-top: 70px;
+}
+.markdown{
+  width: 70%;
+  float: left;
+}
+.rightList{
+  position: fixed;
+  margin-left: 70%;
+}
+.titel{
+  float: left;
+  padding-left: 20%;
+}
+.list{
+  float: left;
+}
+.listText{
+  float: right;
+  padding-right: 50%;
+}
+.videoBox{
+  margin-top: 5%;
+  /*border: darkgray solid 1px*/
+}

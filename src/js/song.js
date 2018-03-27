@@ -1,4 +1,4 @@
-import SiderBar from "@/components/SiderBar.vue" ;
+
 import Data from "@/js/server.js"
 export default {
   name: "song",
@@ -7,9 +7,6 @@ export default {
       lessons:[]
 
     }
-  },
-  components: {
-    SiderBar: SiderBar
   },
   mounted:function () {
     this.getLesson()
@@ -21,13 +18,14 @@ export default {
         self.lessons = result.song
       })
     },
-    details:function (id) {
-      console.log(id)
+    details:function (id,name,planId) {
       this.$router.push({
         path:'/songDetails',
         query: {
-          id:id
-        }
+          id:id,
+          name:name,
+          planID:planId
+        },
       })
     }
   }

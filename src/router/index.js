@@ -5,6 +5,7 @@ import Song from '@/page/Song'
 import Music from '@/page/Music'
 import Read from '@/page/Read'
 import SongDetails from '@/page/SongDetails'
+import MusicDetails from '@/page/MusicDetails'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path:'/songDetails',
       name:'songDetails',
       component:SongDetails
+    },
+    {
+      path:'/musicDetails',
+      name:'musicDetails',
+      component:MusicDetails
     }
 
   ]
