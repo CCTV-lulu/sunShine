@@ -8,9 +8,9 @@
         <p>暂时没有内容</p>
       </div>
       <div v-if="lessons.length > 0">
-        <el-col :span="5" v-for="(item, index) in lessons" :key="index" style="margin-top: 10px">
+        <el-col :span="8" v-for="(item, index) in lessons" :key="index" style="margin-top: 10px">
           <div  @click="details(item.id,item.name,item.planId)">
-            <img src="@/assets/smile.png" />
+            <img src="@/assets/group_8.png" />
             <div style="padding: 14px;">
               <span>{{item.name}}</span>
             </div>

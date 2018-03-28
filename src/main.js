@@ -10,6 +10,7 @@ import SiderBar from '@/components/SiderBar'
 import Header from '@/components/Header'
 import Audio from '@/components/Audio'
 import Video from '@/components/Video'
+import PictureLoop from '@/components/PictureLoop'
 import VueMarkdown from 'vue-markdown'
 
 
@@ -20,6 +21,7 @@ Vue.component('Header',Header)
 Vue.component('Audio',Audio)
 Vue.component('Video',Video)
 Vue.component('VueMarkdown',VueMarkdown)
+Vue.component('PictureLoop',PictureLoop)
 
 /* eslint-disable no-new */
 new Vue({

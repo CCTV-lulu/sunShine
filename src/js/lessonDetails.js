@@ -92,12 +92,11 @@ export default {
       query.equalTo('objectId', materialId);
       query.find().then(function (todo) {
         todo.forEach(function (key) {
-          //判断type，决定是什么音频还是视频文件1 音频 2 视频 3图片 4文件夹
+          //判断type，决定是什么音频还是视频文件1 音频 2 视频 3图片 0文件夹
           // console.log(key)
           if (key.attributes.type == 2) {
-            self.Audio = true
             self.Video = true
-            self.getAudio(key)
+            // self.getAudio(key)
             self.getVideo(key)
             //这里视频也做音频
           }
@@ -111,6 +110,7 @@ export default {
             self.getAtlas(key)
           }
           else if (key.attributes.type == 1) {
+            self.Audio = true
             self.getAudio(key)
           }
         })

@@ -5,6 +5,11 @@ import Song from '@/page/Song'
 import Music from '@/page/Music'
 import Read from '@/page/Read'
 import Play from '@/page/Play'
+import Healthy from '@/page/Healthy'
+import Art from '@/page/Art'
+import Language from '@/page/Language'
+import Science from '@/page/Science'
+import Social from '@/page/Social'
 import LessonDetails from '@/page/LessonDetails'
 import MusicDetails from '@/page/MusicDetails'
 
@@ -46,6 +51,31 @@ export default new Router({
       path:'/musicDetails',
       name:'musicDetails',
       component:MusicDetails
+    },
+    {
+      path:'/art',
+      name:'Art',
+      component:Art
+    },
+    {
+      path:'/healthy',
+      name:'Healthy',
+      component:Healthy
+    },
+    {
+      path:'/language',
+      name:'Language',
+      component:Language
+    },
+    {
+      path:'/science',
+      name:'Science',
+      component:Science
+    },
+    {
+      path:'/social',
+      name:'Social',
+      component:Social
     }
 
   ]

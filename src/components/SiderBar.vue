@@ -111,8 +111,8 @@
             break;
           case '/healthy':
             self.healthyUrl = './static/image/healthylight.svg';
-            self.playUrl = './static/image/paly.svg';
-            self.songUrl = "./static/image/song.svg";
+            self.playUrl = './static/image/play.svg';
+            self.songUrl = './static/image/song.svg';
             self.musicUrl = './static/image/music.svg';
             self.readUrl = './static/image/read.svg';
             self.languageUrl = './static/image/language.svg';
@@ -123,7 +123,7 @@
           case '/language':
             self.languageUrl = './static/image/languagelight.svg';
             self.healthyUrl = './static/image/healthy.svg';
-            self.playUrl = './static/image/paly.svg';
+            self.playUrl = './static/image/play.svg';
             self.songUrl = "./static/image/song.svg";
             self.musicUrl = './static/image/music.svg';
             self.readUrl = './static/image/read.svg';
@@ -135,7 +135,7 @@
             self.socialUrl = './static/image/sociallight.svg';
             self.languageUrl = './static/image/language.svg';
             self.healthyUrl = './static/image/healthy.svg';
-            self.playUrl = './static/image/paly.svg';
+            self.playUrl = './static/image/play.svg';
             self.songUrl = "./static/image/song.svg";
             self.musicUrl = './static/image/music.svg';
             self.readUrl = './static/image/read.svg';
@@ -147,7 +147,7 @@
             self.socialUrl = './static/image/social.svg';
             self.languageUrl = './static/image/language.svg';
             self.healthyUrl = './static/image/healthy.svg';
-            self.playUrl = './static/image/paly.svg';
+            self.playUrl = './static/image/play.svg';
             self.songUrl = "./static/image/song.svg";
             self.musicUrl = './static/image/music.svg';
             self.readUrl = './static/image/read.svg';
@@ -159,7 +159,7 @@
             self.socialUrl = './static/image/social.svg';
             self.languageUrl = './static/image/language.svg';
             self.healthyUrl = './static/image/healthy.svg';
-            self.playUrl = './static/image/paly.svg';
+            self.playUrl = './static/image/play.svg';
             self.songUrl = "./static/image/song.svg";
             self.musicUrl = './static/image/music.svg';
             self.readUrl = './static/image/read.svg';

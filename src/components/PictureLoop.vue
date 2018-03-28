@@ -1,10 +1,23 @@
 <template>
-  <el-carousel :interval="4000" type="card" height="200px">
-    <el-carousel-item v-for="item in 6" :key="item">
-      <h3>{{ item }}</h3>
+  <el-carousel :interval="4000" arrow="always" height="900px">
+    <el-carousel-item v-for="(item, index) in pictures" :key="item">
+      <img :src="item"/>
     </el-carousel-item>
   </el-carousel>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+
+      }
+    },
+    props: {
+      pictures:Array,
+    },
+  }
+</script>
 
 <style>
   .el-carousel__item h3 {
@@ -21,5 +34,9 @@
 
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
+  }
+  img {
+    width: 100%;
+    height: 100%;
   }
 </style>
