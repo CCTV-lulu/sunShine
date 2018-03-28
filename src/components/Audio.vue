@@ -103,7 +103,6 @@
         // this.spaceX = $('.currentProgress').offset().left;
       },
       replay(){
-        console.log(this.player.currentTime)
         this.playTimer.innerText = this.getCurrentTime('0')
         document.querySelector('audio').currentTime =0
       },

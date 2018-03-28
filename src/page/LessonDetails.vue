@@ -22,15 +22,15 @@
             <span class="listText">音频</span>
           </el-col>
           <el-col class="list">
-            <img src="@/assets/image.png"/>
+            <img src="@/assets/image.png" @click="playImage"/>
             <span class="listText">绘本</span>
           </el-col>
           <el-col class="list">
-            <img src="@/assets/pdf.png"/>
+            <img src="@/assets/pdf.png" @click="playPdf"/>
             <span class="listText">文档</span>
           </el-col>
         </el-row>
-        <div v-if="showVideo" class="videoBox">
+        <div v-if="showAudio" class="videoBox">
           <Audio :audioList = 'audioList'></Audio>
         </div>
       </div>
@@ -44,6 +44,6 @@
 
 </template>
 
-<script src="@/js/songDetails.js"></script>
+<script src="@/js/lessonDetails.js"></script>
 
-<style src="@/css/songDetails.css"></style>
+<style src="@/css/lessonDetails.css"></style>

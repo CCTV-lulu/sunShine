@@ -1,7 +1,8 @@
 .noHave{
-  padding-top: 200px;
+  margin-top: 200px;
 }
 .content{
   padding-top: 10%;
-  padding-left: 250px;
+  margin-left: 300px;
+  min-width: 900px;
 }

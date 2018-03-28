@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script src="@/js/read.js"></script>
+<script src="@/js/paly.js"></script>
 
 <style scoped>
   .noHave{

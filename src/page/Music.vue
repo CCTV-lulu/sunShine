@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
+  <div>
+    <Header/>
     <SiderBar/>
     <div class="content">
-      <div class="noHave">
+      <div class="noHave" v-if="lessons.length == 0">
         <img src="@/assets/paragraph.svg"/>
         <p>暂时没有内容</p>
+      </div>
+      <div v-if="lessons.length > 0">
+        <el-col :span="5" v-for="(item, index) in lessons" :key="index" style="margin-top: 10px">
+          <div  @click="details(item.id,item.name,item.planId)">
+            <img src="@/assets/smile.png" />
+            <div style="padding: 14px;">
+              <span>{{item.name}}</span>
+            </div>
+          </div>
+        </el-col>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-    import SiderBar from "@/components/SiderBar.vue" ;
-    export default {
-        name: "music",
-        data(){
-          return{
-
-          }
-        },
-        components: {
-          SiderBar: SiderBar
-        },
-    }
-</script>
+<script src="@/js/music.js"></script>
 
 <style src="@/css/music.css"></style>
