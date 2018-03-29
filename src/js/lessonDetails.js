@@ -3,12 +3,14 @@ export default {
     return {
       name: '',
       images:[],
+      audioName:'音频',
+      videoName:'视频',
       showAudio: false,
       audioList: {
         //音频组件地址,只能传递一个,如果需要传递多个,可以自己修改源码  换成数组或者json
         url: "",
         //这个音频文件的长度,因为一般都是异步获取到音频地址才能初始化audio的,所以这个参数父传递给子合适点
-        totalTime: null,
+        audioname:''
       },
       video: {
         sources: [{
@@ -104,9 +106,7 @@ export default {
           // console.log(key)
           if (key.attributes.type == 2) {
             self.Video = true
-            // self.getAudio(key)
             self.getVideo(key)
-            //这里视频也做音频
           }
           else if (key.attributes.type == 3) {
             self.image = true
@@ -128,8 +128,10 @@ export default {
     },
     getAudio: function (item) {
       var self = this
+      self.audioName = item.attributes.name
       var url = item.attributes.file.attributes.url
       self.audioList.url = url
+      self.audioList.audioname = item.attributes.name
     },
     getImage: function (item) {
       console.log('----------------image')
@@ -150,6 +152,8 @@ export default {
       })
     },
     getVideo: function (item) {
+      console.log(item)
+      this.videoName = item.attributes.name
       console.log('--------------------Video')
     },
     getPdf: function () {

@@ -11,23 +11,23 @@
         <VueMarkdown :source="comment.body"></VueMarkdown>
       </div>
       <div class="rightList">
-        <el-row>
+        <el-row >
           <p class="titel">教学材料</p>
-          <el-col class="list">
-            <img src="@/assets/audio.png"/>
-            <span class="listText">视频</span>
+          <el-col >
+            <img src="@/assets/audio.png" class="list"/>
+            <p class="listText">{{videoName}}</p>
           </el-col>
-          <el-col class="list">
-            <img src="@/assets/video.png" @click="playVideo"/>
-            <span class="listText">音频</span>
+          <el-col >
+            <img src="@/assets/video.png" class="list" @click="playVideo"/>
+            <p class="listText">{{audioName}}</p>
           </el-col>
-          <el-col class="list">
-            <img src="@/assets/image.png" @click="playImage"/>
-            <span class="listText">绘本</span>
+          <el-col >
+            <img src="@/assets/image.png" class="list" @click="playImage"/>
+            <p class="listText">绘本</p>
           </el-col>
-          <el-col class="list">
-            <img src="@/assets/pdf.png" @click="playPdf"/>
-            <span class="listText">文档</span>
+          <el-col>
+            <img src="@/assets/pdf.png" class="list" @click="playPdf"/>
+            <p class="listText">文档</p>
           </el-col>
         </el-row>
         <div v-if="showAudio" class="videoBox">

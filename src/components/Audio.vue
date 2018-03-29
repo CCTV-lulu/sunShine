@@ -1,25 +1,18 @@
 <template>
-  <div>
     <div class="audioClassBG">
       <div class="videoTitel">
-        <span>歌曲</span>
+        <span>{{audioList.audioname}}</span>
       </div>
       <div class="playBack">
         <audio v-on:play="audioPlayEvent" @timeupdate='updateTime' v-on:pause="audioPauseEvent"  v-on:ended="audioEndedEvent" ref="audioPlayer"  :src="audioList.url?audioList.url:null" autobuffer ></audio>
         <span ref="audioTimer" class="currentTime">00:00</span>
         <span class="totalTime">{{totalTime}}</span>
-        <div class="btnBox">
+        <!--<div class="btnBox">-->
           <img src="../assets/replay.svg" class="replay" @click="replay"/>
           <a :class="!isplay?'audioPlayBtn':'audioPauseBtn'" @click="playCurrentAudioFn"></a>
-        </div>
+        <!--</div>-->
       </div>
-      <!-- 音频的按钮 -->
-      <div class="audioBtnBox">
-
-      </div>
-      <!-- 音频的按钮end -->
     </div>
-  </div>
 </template>
 
 <script>
@@ -159,20 +152,23 @@
 
 <style scoped>
   .audioClassBG{
-    width: 100%;
+    width: 300px;
     height: 100px;
     margin-top: 15px;
     margin-bottom: 15px;
   }
-  .videoTitel span{
-    font-size: 20px;
-  }
   .videoTitel{
-    margin-bottom: 10px;
+    float: left;
+    font-size: 20px;
+    /*margin-left: 50px;*/
   }
   .playBack span{
-    margin-top:32px;
-    padding: 0 20px;
+    padding: 0 10px;
+  }
+  .playBack{
+    padding-top: 30px;
+    float: left;
+    /*margin-left: -50px;*/
   }
   .playBack .audioPlayBtn{
     float: right;
@@ -186,14 +182,14 @@
     width:20px;
     height:20px;
     background: url('../../static/image/pause.svg') no-repeat;
-    margin-right: 50px;
+    /*margin-right: 200px;*/
   }
   .replay{
     /*float: right;*/
-    display: block;
+    /*display: block;*/
     width:20px;
     height:20px;
-    margin-left: 300px;
-    margin-bottom: -50px;
+    margin-left: 30px;
+    /*margin-bottom: -50px;*/
   }
 </style>

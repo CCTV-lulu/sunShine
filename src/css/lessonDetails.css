@@ -39,10 +39,10 @@ h3{
   float: left;
 }
 .listText{
-  float: right;
-  padding-right: 50%;
+  float: left;
+  margin-left: 30px;
 }
 .videoBox{
-  margin-top: 5%;
+  margin-top: 20%;
   /*border: darkgray solid 1px*/
 }
