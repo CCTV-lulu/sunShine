@@ -11,7 +11,7 @@ import Language from '@/page/Language'
 import Science from '@/page/Science'
 import Social from '@/page/Social'
 import LessonDetails from '@/page/LessonDetails'
-import MusicDetails from '@/page/MusicDetails'
+import PictureLoop from '@/page/PictureLoop'
 
 Vue.use(Router)
 
@@ -48,9 +48,9 @@ export default new Router({
       component:LessonDetails
     },
     {
-      path:'/musicDetails',
-      name:'musicDetails',
-      component:MusicDetails
+      path:'/pictureLoop',
+      name:'PictureLoop',
+      component:PictureLoop
     },
     {
       path:'/art',

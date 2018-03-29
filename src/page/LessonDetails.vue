@@ -38,8 +38,6 @@
     <!--<div class="container">-->
     <!--<Audio :sources="video.sources" :options="video.options"></Video>-->
     <!--</div>-->
-
-
   </div>
 
 </template>

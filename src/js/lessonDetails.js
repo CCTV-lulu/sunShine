@@ -52,10 +52,18 @@ export default {
       }
     },
     playImage: function () {
-      if (this.Atlas == true) {
+      var self = this
+      if (self.Atlas == true) {
         //有图集信息则播放
+        self.$router.push({
+          path:'/pictureLoop',
+          name:'PictureLoop',
+          query:{
+            pictures:self.atlasId
+          }
+        })
       } else {
-        this.$notify({
+        self.$notify({
           title: '提示',
           message: '此课程暂时没有绘本材料',
           offset: 200
@@ -107,7 +115,9 @@ export default {
           }
           else if (key.attributes.type == 0) {
             self.Atlas = true
+            self.image = true
             self.getAtlas(key)
+            self.getPlan()
           }
           else if (key.attributes.type == 1) {
             self.Audio = true
@@ -128,6 +138,16 @@ export default {
     },
     getAtlas: function (item) {
       console.log('---------------图集')
+      var self = this
+      self.atlasId = item.id
+      var query = new AV.Query('Material')
+      var todoFolder = AV.Object.createWithoutData('Material', self.atlasId);
+      query.equalTo('parent', todoFolder);
+      query.find().then(function (result) {
+        result.forEach(function (item) {
+          self.images.push({'imageObjectId':item.id,'imageUrl':item.attributes.file.attributes.url})
+        })
+      })
     },
     getVideo: function (item) {
       console.log('--------------------Video')
@@ -143,10 +163,11 @@ export default {
       query.find().then(function (result) {
         result.forEach(function (item) {
           if (self.image == true) {
+            var markdown = item.attributes.content
             self.images.forEach(function (oneImage) {
-              var markdown = item.attributes.content
-              self.comment.body = markdown.replace(oneImage.imageObjectId, oneImage.imageUrl)
+              markdown = markdown.replace(oneImage.imageObjectId, oneImage.imageUrl)
             })
+            self.comment.body = markdown
           } else {
             self.comment.body = item.attributes.content
           }
