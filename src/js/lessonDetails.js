@@ -6,6 +6,7 @@ export default {
       audioName:'音频',
       videoName:'视频',
       showAudio: false,
+      pdf: false,
       audioList: {
         //音频组件地址,只能传递一个,如果需要传递多个,可以自己修改源码  换成数组或者json
         url: "",
@@ -31,12 +32,19 @@ export default {
   mounted: function () {
     this.getMaterialId()
     this.getParams()
-    this.getPlan()
   },
   methods: {
     getParams: function () {
       var self = this
-      self.name = self.$route.query.className
+      var id = self.$route.params.id
+      var query = new AV.Query('Lesson')
+      query.get(id).then(function (todo) {
+        self.name = todo.attributes.name;
+        self.planId = todo.attributes.plan.id
+        self.getPlan()
+      }, function (error) {
+        // 异常处理
+      })
     },
     back: function () {
       this.$router.back(-1)
@@ -85,7 +93,7 @@ export default {
     },
     getMaterialId: function () {
       var self = this
-      var id = self.$route.query.id
+      var id = self.$route.params.id
       var query = new AV.Query('LessonMaterial')
       var lessonId = AV.Object.createWithoutData('Lesson', id);
       query.equalTo('lesson', lessonId);
@@ -103,7 +111,6 @@ export default {
       query.find().then(function (todo) {
         todo.forEach(function (key) {
           //判断type，决定是什么音频还是视频文件1 音频 2 视频 3图片 0文件夹
-          // console.log(key)
           if (key.attributes.type == 2) {
             self.Video = true
             self.getVideo(key)
@@ -152,7 +159,6 @@ export default {
       })
     },
     getVideo: function (item) {
-      console.log(item)
       this.videoName = item.attributes.name
       console.log('--------------------Video')
     },
@@ -161,7 +167,7 @@ export default {
     },
     getPlan: function () {
       var self = this
-      var planId = self.$route.query.planId
+      var planId = self.planId
       var query = new AV.Query('LessonPlan')
       query.equalTo('objectId', planId)
       query.find().then(function (result) {
@@ -178,6 +184,7 @@ export default {
         })
       })
     }
-
   }
+
+
 }

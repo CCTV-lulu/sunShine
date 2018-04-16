@@ -3,7 +3,7 @@
     <div class="head">
       <el-row>
         <img class="menu" src="@/assets/back.png" @click="back"/>
-        <h3>{{name}}</h3>
+        <h3 class="lessonName">{{name}}</h3>
       </el-row>
     </div>
     <div class="detailBody">
@@ -21,10 +21,10 @@
             <img src="@/assets/video.png" class="list" @click="playVideo"/>
             <p class="listText">{{audioName}}</p>
           </el-col>
-          <el-col >
+          <el-col>
             <img src="@/assets/image.png" class="list" @click="playImage"/>
             <p class="listText">绘本</p>
-          </el-col>
+          </el-col>    
           <el-col>
             <img src="@/assets/pdf.png" class="list" @click="playPdf"/>
             <p class="listText">文档</p>

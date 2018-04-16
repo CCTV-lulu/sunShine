@@ -12,10 +12,12 @@ import Science from '@/page/Science'
 import Social from '@/page/Social'
 import LessonDetails from '@/page/LessonDetails'
 import PictureLoop from '@/page/PictureLoop'
+import test from '@/page/test'
 
 Vue.use(Router)
 
 export default new Router({
+  // mode:'history',
   routes: [
     {
       path: '/',
@@ -43,7 +45,7 @@ export default new Router({
       component: Play
     },
     {
-      path:'/lessonDetails',
+      path:'/lesson/:id',
       name:'LessonDetails',
       component:LessonDetails
     },
@@ -76,6 +78,11 @@ export default new Router({
       path:'/social',
       name:'Social',
       component:Social
+    },
+    {
+      path:'/test',
+      name:'test',
+      component:test
     }
 
   ]

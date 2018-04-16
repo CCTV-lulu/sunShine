@@ -3,7 +3,7 @@
     <div class="head">
       <el-row>
         <img class="menu" src="@/assets/back.png" @click="back"/>
-        <h3>绘本</h3>
+        <h3 class="huiben">绘本</h3>
       </el-row>
     </div>
     <div class="box">
@@ -82,7 +82,7 @@
     margin-left: 50px;
     margin-right: 20px;
   }
-  h3{
+  .huiben{
     float: left
   }
 </style>

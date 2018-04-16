@@ -16,14 +16,9 @@ export default {
         self.lessons = result.read
       })
     },
-    details: function (id, name, planId) {
+    details: function (id) {
       this.$router.push({
-        path: '/lessonDetails',
-        query: {
-          id: id,
-          className: name,
-          planId: planId
-        }
+        path: '/lesson/'+id
       })
     }
   }

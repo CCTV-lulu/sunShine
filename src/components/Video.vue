@@ -166,7 +166,7 @@
   }
 </style>
 <template>
-  <div id="app">
+  <!--<div id="app">-->
     <div class="container">
       <div class="__cov-video-container" @mouseenter="mouseEnterVideo" @mouseleave="mouseLeaveVideo">
         <video :class="{ 'hide-cursor': !state.contrlShow }" class="__cov-video" :poster="options.poster">
@@ -252,7 +252,7 @@
         </div>
       </div>
     </div>
-  </div>
+  <!--</div>-->
 </template>
 <script>
   const getMousePosition = function (e, type = 'x') {

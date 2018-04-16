@@ -8,16 +8,16 @@ export default {
       result.forEach(function (key) {
         var subject = key._serverData.subject.id
         if (subject == '5a8e908dac502e0032b6225d'){
-            subjects.play.push({'name':key.attributes.name,'id':key.id ,'planId': key.attributes.plan.id})
+            subjects.play.push({'name':key.attributes.name,'id':key.id })
         }
         else if (subject == '5a701c82d50eee00444134b2'){
-          subjects.read.push({'name':key.attributes.name,'id':key.id ,'planId':key.attributes.plan.id})
+          subjects.read.push({'name':key.attributes.name,'id':key.id })
         }
         else if(subject == '5a741bcb2f301e003be904ed'){
-          subjects.music.push({'name':key.attributes.name,'id':key.id ,'planId':key.attributes.plan.id})
+          subjects.music.push({'name':key.attributes.name,'id':key.id })
         }
         else {
-          subjects.song.push({'name':key.attributes.name,'id':key.id ,'planId':key.attributes.plan.id})
+          subjects.song.push({'name':key.attributes.name,'id':key.id })
         }
       })
       cb(subjects)
@@ -36,19 +36,19 @@ export default {
         var subject = key._serverData.subject.id
         keyTags.forEach(function (item) {
           if (item == "domain.语言"){
-              tag.language.push({'name':key.attributes.name,'id':key.id ,'planId':key.attributes.plan.id,'subject':self.judgeSubject(subject)})
+              tag.language.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
           }
           if(item =="domain.艺术" ){
-            tag.art.push({'name':key.attributes.name,'id':key.id ,'planId':key.attributes.plan.id,'subject':self.judgeSubject(subject)})
+            tag.art.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
           }
           if(item =="domain.科学"){
-            tag.science.push({'name':key.attributes.name,'id':key.id ,'planId':key.attributes.plan.id,'subject':self.judgeSubject(subject)})
+            tag.science.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
           }
           if(item =="domain.健康"){
-            tag.healthy.push({'name':key.attributes.name,'id':key.id ,'planId':key.attributes.plan.id,'subject':self.judgeSubject(subject)})
+            tag.healthy.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
           }
           if(item =="domain.社会"){
-            tag.social.push({'name':key.attributes.name,'id':key.id ,'planId':key.attributes.plan.id,'subject':self.judgeSubject(subject)})
+            tag.social.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
           }
         })
       })

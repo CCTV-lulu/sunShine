@@ -13,7 +13,7 @@
               <el-input v-model="telNumber"></el-input>
           </el-col>
           <el-col :span="5">
-            <el-button type="text">发送验证码</el-button>
+            <el-button type="text" @click="getMsCode" :disabled = isDisabled >{{SMSCodeText}}</el-button>
           </el-col>
         </el-row>
         <el-row>

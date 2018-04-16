@@ -2,7 +2,7 @@
   <div class="header">
   <el-row >
   <img class="menu" src="@/assets/menu.png"/>
-  <h3>阳光盒子</h3>
+  <h3 class="sunshine">阳光盒子</h3>
   </el-row>
   </div>
 </template>
@@ -28,7 +28,7 @@
     height: 70px;
     width: 100%;
   }
-  h3{
+  .sunshine{
     float: left
   }
 

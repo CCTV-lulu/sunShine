@@ -15,14 +15,9 @@ export default {
         self.lessons = result.social
       })
     },
-    details:function (id,name,planId) {
+    details:function (id) {
       this.$router.push({
-        path:'/lessonDetails',
-        query: {
-          id:id,
-          className:name,
-          planId:planId
-        }
+        path:'/lesson/'+id
       })
     }
   }
