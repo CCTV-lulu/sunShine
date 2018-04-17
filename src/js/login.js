@@ -16,11 +16,10 @@ export default {
     console.log(currentUser)
     if (currentUser) {
       //登录跳首页
-      self.$router.push({path: '/song'})
+      // self.$router.push({path: '/song'})
     }
     else {
       //未登录跳登录
-      console.log('-----------验证登录')
       self.$router.push({path:'/'})
     }
   },
@@ -63,10 +62,11 @@ export default {
         self.sendSuccessMessage('发送成功');
       },function (err) {
         var message ;
+        console.log(err)
         if(err.code === 213){
-          message = '发送信息频繁，请稍后再试';
-        }else if(err.code === 601){
           message = '发送失败,检查手机号是否为用户认证手机号';
+        }else if(err.code === 601){
+          message = '发送短信过快，请稍后重试';
         }else{
           message = '网络错误，请稍候再试'
         }

@@ -7,6 +7,9 @@ export default {
       videoName:'视频',
       showAudio: false,
       pdf: false,
+      Audio:false,
+      Atlas:false,
+      Video:false,
       audioList: {
         //音频组件地址,只能传递一个,如果需要传递多个,可以自己修改源码  换成数组或者json
         url: "",
@@ -49,47 +52,24 @@ export default {
     back: function () {
       this.$router.back(-1)
     },
-    playVideo: function () {
-      if (this.Audio == true) {
+    playAudio: function () {
         this.showAudio = true
-      }
-      else {
-        this.$notify({
-          title: '提示',
-          message: '此课程暂时没有音频材料',
-          offset: 200
-        });
-      }
     },
     playImage: function () {
       var self = this
-      if (self.Atlas == true) {
-        //有图集信息则播放
-        self.$router.push({
-          path:'/pictureLoop',
-          name:'PictureLoop',
-          query:{
-            pictures:self.atlasId
-          }
-        })
-      } else {
-        self.$notify({
-          title: '提示',
-          message: '此课程暂时没有绘本材料',
-          offset: 200
-        });
-      }
+      //有图集信息则播放
+      self.$router.push({
+        path:'/pictureLoop',
+        name:'PictureLoop',
+        query:{
+          pictures:self.atlasId
+        }
+      })
+
     },
     playPdf: function () {
-      if (this.pdf) {
-        //展示绘本
-      } else {
-        this.$notify({
-          title: '提示',
-          message: '此课程暂时没有文档材料',
-          offset: 200
-        });
-      }
+      //todo
+      //展示绘本
     },
     getMaterialId: function () {
       var self = this

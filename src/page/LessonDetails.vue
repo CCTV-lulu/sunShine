@@ -13,19 +13,19 @@
       <div class="rightList">
         <el-row >
           <p class="titel">教学材料</p>
-          <el-col >
+          <el-col v-if="Video" >
             <img src="@/assets/audio.png" class="list"/>
             <p class="listText">{{videoName}}</p>
           </el-col>
-          <el-col >
-            <img src="@/assets/video.png" class="list" @click="playVideo"/>
+          <el-col v-if="Audio">
+            <img src="@/assets/video.png" class="list" @click="playAudio"/>
             <p class="listText">{{audioName}}</p>
           </el-col>
-          <el-col>
+          <el-col v-if="Atlas">
             <img src="@/assets/image.png" class="list" @click="playImage"/>
             <p class="listText">绘本</p>
-          </el-col>    
-          <el-col>
+          </el-col>
+          <el-col v-if="pdf">
             <img src="@/assets/pdf.png" class="list" @click="playPdf"/>
             <p class="listText">文档</p>
           </el-col>
