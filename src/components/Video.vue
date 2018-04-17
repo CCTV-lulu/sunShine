@@ -7,6 +7,7 @@
   .__cov-video {
     width: 100%;
     height: 100%;
+    max-height: 62.5rem;
     vertical-align: bottom;
   }
   .__cov-contrl-content {
@@ -403,7 +404,7 @@
       },
       getTime () {
         this.$video.addEventListener('durationchange', (e) => {
-          console.log(e)
+          // console.log(e)
         })
         this.$video.addEventListener('progress', (e) => {
           this.video.loaded = (-1 + (this.$video.buffered.end / this.$video.duration)) * 100

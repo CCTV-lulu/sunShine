@@ -14,7 +14,7 @@
         <el-row >
           <p class="titel">教学材料</p>
           <el-col v-if="Video" >
-            <img src="@/assets/audio.png" class="list"/>
+            <img src="@/assets/audio.png" class="list" @click="playVideo"/>
             <p class="listText">{{videoName}}</p>
           </el-col>
           <el-col v-if="Audio">

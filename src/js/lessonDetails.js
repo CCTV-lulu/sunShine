@@ -16,17 +16,6 @@ export default {
         //这个音频文件的长度,因为一般都是异步获取到音频地址才能初始化audio的,所以这个参数父传递给子合适点
         audioname:''
       },
-      video: {
-        sources: [{
-          src: 'http://covteam.u.qiniudn.com/oceans.mp4',
-          type: 'video/mp4'
-        }],
-        options: {
-          autoplay: true,
-          volume: 0.6,
-          poster: 'http://covteam.u.qiniudn.com/poster.png'
-        }
-      },
       comment: {
         body: ''
       }
@@ -52,18 +41,19 @@ export default {
     back: function () {
       this.$router.back(-1)
     },
+    playVideo:function () {
+      var self = this
+      self.$router.push({
+        path:'/video/'+self.videoId,
+      })
+    },
     playAudio: function () {
         this.showAudio = true
     },
     playImage: function () {
       var self = this
-      //有图集信息则播放
       self.$router.push({
-        path:'/pictureLoop',
-        name:'PictureLoop',
-        query:{
-          pictures:self.atlasId
-        }
+        path:'/pictureLoop/'+self.atlasId,
       })
 
     },
@@ -121,12 +111,10 @@ export default {
       self.audioList.audioname = item.attributes.name
     },
     getImage: function (item) {
-      console.log('----------------image')
       var self = this
       self.images.push({'imageObjectId':item.id,'imageUrl':item.attributes.file.attributes.url})
     },
     getAtlas: function (item) {
-      console.log('---------------图集')
       var self = this
       self.atlasId = item.id
       var query = new AV.Query('Material')
@@ -140,9 +128,10 @@ export default {
     },
     getVideo: function (item) {
       this.videoName = item.attributes.name
-      console.log('--------------------Video')
+      this.videoId = item.id
     },
     getPdf: function () {
+      //todo
       //文档信息
     },
     getPlan: function () {

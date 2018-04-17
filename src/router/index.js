@@ -12,7 +12,7 @@ import Science from '@/page/Science'
 import Social from '@/page/Social'
 import LessonDetails from '@/page/LessonDetails'
 import PictureLoop from '@/page/PictureLoop'
-import test from '@/page/test'
+import ShowVideo from '@/page/showVideo'
 
 Vue.use(Router)
 
@@ -50,7 +50,7 @@ export default new Router({
       component:LessonDetails
     },
     {
-      path:'/pictureLoop',
+      path:'/pictureLoop/:id',
       name:'PictureLoop',
       component:PictureLoop
     },
@@ -80,9 +80,9 @@ export default new Router({
       component:Social
     },
     {
-      path:'/test',
-      name:'test',
-      component:test
+      path:'/video/:id',
+      name:'viedo',
+      component:ShowVideo
     }
 
   ]
