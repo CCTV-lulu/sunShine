@@ -13,7 +13,7 @@
     </el-col >
     </el-row>
     <div class="community" v-if="community">
-      <div class="titel">
+      <div class="titel-community">
         <img  class="logo" src="@/assets/page_1.svg"/>
         <span>阳光盒子</span>
         <p class="p1">加入教师社区</p>
@@ -23,6 +23,7 @@
         <p class="logout" @click="logout">登出</p>
       </div>
     </div>
+    <div class="overlay" v-if="community" @click="recovery"></div>
   </div>
 </template>
 
@@ -31,7 +32,9 @@
       data(){
           return{
             disabled: false,
-            community:false
+            community:false,
+            width:'',
+            height:''
           }
       },
       methods:{
@@ -48,10 +51,15 @@
         },
         showMenu:function () {
           this.community = true
+          document.body.parentNode.style.overflow = "hidden"
         },
         logout:function () {
           AV.User.logOut()
           this.$router.push({path: '/'})
+        },
+        recovery:function () {
+          this.community = false
+          document.body.parentNode.style.overflow = "scroll"
         }
       }
     }
@@ -86,39 +94,47 @@
   .community{
     position: fixed;
     height: 1000px;
-    width: 300px;
+    width: 400px;
     background-color: white;
     margin-top: -100px;
     z-index: 1000;
   }
-  .titel{
-    margin-top: 100px;
+  .overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.8);
+    z-index: 200;
   }
-  .titel .logo{
-    /*margin-left: -100px;*/
+  .titel-community{
+    margin-top: 100px;
+    text-align:left;
+    margin-left: 80px;
+  }
+  .titel-community .logo{
     vertical-align:middle
   }
-  .titel span{
-    margin-left: 10px;
+  .titel-community span{
     font-weight:bold;
     font-size: 25px;
   }
-  .titel .p1{
+  .titel-community .p1{
     font-size: 23px;
   }
-  .titel .p2{
+  .titel-community .p2{
     font-size: 20px;
-    margin-left: 80px;
     text-align:left;
     margin-right: 40px;
   }
-  .titel .QR{
-    margin-left: 50px;
+  .titel-community .QR{
+    margin-left: -20px;
   }
-  .titel .logout{
+  .titel-community .logout{
     margin-top: 50px;
     font-size: 20px;
-    margin-right: 110px;
+    /*margin-right: 110px;*/
   }
 
 </style>
