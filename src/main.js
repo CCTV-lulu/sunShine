@@ -12,6 +12,20 @@ import Audio from '@/components/Audio'
 import Video from '@/components/Video'
 import VueMarkdown from 'vue-markdown'
 
+router.beforeEach((to, from, next) => {
+  if(to.path === '/')  {
+    next()
+  } else {
+    if (AV.User.current()) {
+      //登录跳首页
+      return next({ path: '/song' })
+    }
+    else {
+      //未登录跳登录
+      return next({ path: '/' })
+    }
+  }
+})
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
