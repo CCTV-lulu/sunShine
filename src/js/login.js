@@ -10,6 +10,18 @@ export default {
       timer:''
     }
   },
+  mounted:function () {
+    var self = this
+    var currentUser = AV.User.current();
+    if (currentUser) {
+      //登录跳首页
+      self.$router.push({path: '/song'})
+    }
+    else {
+      //未登录跳登录
+      self.$router.push({path:'/'})
+    }
+  },
   methods: {
     login:function () {
       let self = this;

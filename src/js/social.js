@@ -7,6 +7,7 @@ export default {
   },
   mounted:function () {
     this.getLesson()
+    this.checkLongin
   },
   methods: {
     getLesson: function () {
@@ -19,6 +20,13 @@ export default {
       this.$router.push({
         path:'/lesson/'+id
       })
+    },
+    checkLongin:function () {
+      var self = this
+      var currentUser = AV.User.current();
+      if (currentUser == null) {
+        self.$router.push({path:'/'})
+      }
     }
   }
 }
