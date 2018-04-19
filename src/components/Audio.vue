@@ -48,7 +48,7 @@
       return{
         //是否正在播放中
         $video: null,
-        isplay:false,
+        isplay:true,
         //上次的音频码
         lastTime:null,
         totalTime:'00:00'
@@ -80,6 +80,7 @@
     },
     methods:{
       test(){
+        this.player.play()
         this.$video = this.$el.getElementsByTagName('audio')[0]
         this.$video.addEventListener('timeupdate', this.timeline)
       },
