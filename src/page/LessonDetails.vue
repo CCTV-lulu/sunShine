@@ -13,10 +13,12 @@
       <div class="rightList">
         <el-row >
           <p class="titel">教学材料</p>
-          <el-col v-if="Video" >
-            <img src="@/assets/audio.png" class="list" @click="playVideo"/>
-            <p class="listText">{{videoName}}</p>
+
+          <el-col v-if="Video" v-for="(item, index) in videoList" :key="index">
+            <img src="@/assets/audio.png" class="list" @click="playVideo(item.videoId)"/>
+            <p class="listText">{{item.videoName}}</p>
           </el-col>
+
           <el-col v-if="Audio">
             <img src="@/assets/video.png" class="list" @click="playAudio"/>
             <p class="listText">{{audioName}}</p>

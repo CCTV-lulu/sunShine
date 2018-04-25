@@ -69,7 +69,7 @@ export default {
               else {
                 subjects.song.push({'name':key.attributes.name,'id':key.id })
               }
-            }else if (key.attributes.isChecked === 1) {
+            }else if (key.attributes.isChecked === 1 || key.attributes.isChecked === 2) {
               var lessonId = key.id
               self.getHistoryLesson(lessonId,function (result) {
                 Vue.http.get(result).then(function (response) {
@@ -164,7 +164,7 @@ export default {
                 }
               })
             }
-            else if(key.attributes.isChecked === 1) {
+            else if(key.attributes.isChecked === 1 || key.attributes.isChecked === 2) {
               //todo
               //获取历史版本
               var lessonId = key.id

@@ -4,7 +4,7 @@ export default {
       name: '',
       images:[],
       audioName:'音频',
-      videoName:'视频',
+      videoList:[],
       showAudio: false,
       pdf: false,
       Audio:false,
@@ -65,7 +65,6 @@ export default {
           // 异常处理
         })
       }
-
     },
     getHistoryJson:function (jsonUrl) {
       var self = this
@@ -81,10 +80,10 @@ export default {
     back: function () {
       this.$router.back(-1)
     },
-    playVideo:function () {
+    playVideo:function (id) {
       var self = this
       self.$router.push({
-        path:'/video/'+self.videoId,
+        path:'/video/'+id,
       })
     },
     playAudio: function () {
@@ -208,8 +207,8 @@ export default {
       //忘记了为什么写这里
     },
     getVideo: function (item) {
+      this.videoList.push({'videoName':item.attributes ? item.attributes.name : item.name,'videoId':item.id})
       this.videoName = item.attributes ? item.attributes.name : item.name
-      this.videoId = item.id
     },
     getPdf: function () {
       //todo
