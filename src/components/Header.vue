@@ -56,6 +56,7 @@
         logout:function () {
           AV.User.logOut()
           this.$router.push({path: '/'})
+          document.body.parentNode.style.overflow = "scroll"
         },
         recovery:function () {
           this.community = false

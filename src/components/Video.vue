@@ -154,17 +154,17 @@
   .hide-cursor {
     cursor: none;
   }
-  @media all and (max-width: 768px) {
-    .__cov-contrl-vol-slider {
-      width: 3rem;
-    }
-    .__cov-contrl-video-time {
-      padding: 0 .2rem;
-    }
-    .__cov-contrl-vol-box .__cov-contrl-play-btn {
-      width: 2rem;
-    }
-  }
+  /*@media all and (max-width: 768px) {*/
+    /*.__cov-contrl-vol-slider {*/
+      /*width: 3rem;*/
+    /*}*/
+    /*.__cov-contrl-video-time {*/
+      /*padding: 0 .2rem;*/
+    /*}*/
+    /*.__cov-contrl-vol-box .__cov-contrl-play-btn {*/
+      /*width: 2rem;*/
+    /*}*/
+  /*}*/
 </style>
 <template>
   <!--<div id="app">-->

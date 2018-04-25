@@ -53,7 +53,7 @@
 
 <style scoped>
   .head{
-    position: fixed;
+    /*position: fixed;*/
     z-index: 100;
     background-color:white;
     border-bottom   : darkgray solid 1px;
