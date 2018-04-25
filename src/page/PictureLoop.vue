@@ -31,9 +31,8 @@
         this.$router.back(-1)
       },
       getPicture: function () {
-        console.log('------------')
         var self = this
-        var picturesId = this.$route.query.pictures
+        var picturesId = this.$route.params.id
         var query = new AV.Query('Material')
         var todoFolder = AV.Object.createWithoutData('Material', picturesId);
         query.equalTo('parent', todoFolder);

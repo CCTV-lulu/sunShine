@@ -10,6 +10,8 @@ export default {
       Audio:false,
       Atlas:false,
       Video:false,
+      manifestUrl:false,
+      materialHistory:false,
       audioList: {
         //音频组件地址,只能传递一个,如果需要传递多个,可以自己修改源码  换成数组或者json
         url: "",
@@ -29,13 +31,51 @@ export default {
     getParams: function () {
       var self = this
       var id = self.$route.params.id
-      var query = new AV.Query('Lesson')
-      query.get(id).then(function (todo) {
-        self.name = todo.attributes.name;
-        self.planId = todo.attributes.plan.id
-        self.getPlan()
-      }, function (error) {
-        // 异常处理
+      var sign = id.substring(id.length-3,id.length)
+      if(sign == 'his'){
+        var lessonId = id.substring(0,id.length-3)
+        var startDateQuery = new AV.Query('LessonSnapshot');
+        startDateQuery.equalTo('lessonId',lessonId)
+        var endDateQuery = new AV.Query('LessonSnapshot');
+        startDateQuery.equalTo('isChecked', 3);
+        var query = AV.Query.and(startDateQuery, endDateQuery);
+        query.find().then(function (result) {
+          if (result.length == 1){
+            self.manifestUrl = result[0].toJSON().manifest_json.url //只有一个版本的json路径
+          }else if (result.length >1){
+            var version = 1
+            var lesson =''
+            result.forEach(function (item) {
+              if (item.attributes.version_code > version){
+                version = item.attributes.version_code
+                lesson = item.toJSON().manifest_json.url
+              }
+            })
+            self.manifestUrl = lesson //有版本号最大的json路径
+          }
+          self.getHistoryJson(self.manifestUrl) //获取json内容
+        })
+      }else {
+        var query = new AV.Query('Lesson')
+        query.get(id).then(function (todo) {
+          self.name = todo.attributes.name;
+          self.planId = todo.attributes.plan.id
+          self.getPlan()
+        }, function (error) {
+          // 异常处理
+        })
+      }
+
+    },
+    getHistoryJson:function (jsonUrl) {
+      var self = this
+      self.$http.get(jsonUrl).then(function (response) {
+        self.comment.body = response.data.content
+        self.name = response.data.name
+        self.materialHistory = response.data.materials
+        if(self.materialHistory){
+          self.getMaterials()
+        }
       })
     },
     back: function () {
@@ -76,58 +116,99 @@ export default {
     },
     getMaterials: function (materialId) {
       var self = this
-      var query = new AV.Query('Material')
-      query.equalTo('objectId', materialId);
-      query.find().then(function (todo) {
-        todo.forEach(function (key) {
+      if(self.materialHistory){
+        self.materialHistory.forEach(function (key) {
           //判断type，决定是什么音频还是视频文件1 音频 2 视频 3图片 0文件夹
-          if (key.attributes.type == 2) {
+          if (key.type == 2) {
             self.Video = true
             self.getVideo(key)
           }
-          else if (key.attributes.type == 3) {
+          else if (key.type == 3) {
             self.image = true
             self.getImage(key)
-            self.getPlan()
+            if (self.image == true) {
+              var markdown = self.comment.body
+              self.images.forEach(function (oneImage) {
+                markdown = markdown.replace(oneImage.imageObjectId, oneImage.imageUrl)
+              })
+              self.comment.body = markdown
+            }
+            //展示教案里面的图片
           }
-          else if (key.attributes.type == 0) {
+          else if (key.type == 0) {
             self.Atlas = true
             self.image = true
             self.getAtlas(key)
-            self.getPlan()
+            if (self.image == true) {
+              var markdown = self.comment.body
+              self.images.forEach(function (oneImage) {
+                markdown = markdown.replace(oneImage.imageObjectId, oneImage.imageUrl)
+              })
+              self.comment.body = markdown
+            }
+            //展示教案里面的图片
           }
-          else if (key.attributes.type == 1) {
+          else if (key.type == 1) {
             self.Audio = true
             self.getAudio(key)
           }
         })
-      })
+      }else {
+        var query = new AV.Query('Material')
+        query.equalTo('objectId', materialId);
+        query.find().then(function (todo) {
+          todo.forEach(function (key) {
+            //判断type，决定是什么音频还是视频文件1 音频 2 视频 3图片 0文件夹
+            if (key.attributes.type == 2) {
+              self.Video = true
+              self.getVideo(key)
+            }
+            else if (key.attributes.type == 3) {
+              self.image = true
+              self.getImage(key)
+              self.getPlan()
+            }
+            else if (key.attributes.type == 0) {
+              self.Atlas = true
+              self.image = true
+              self.getAtlas(key)
+              self.getPlan()
+            }
+            else if (key.attributes.type == 1) {
+              self.Audio = true
+              self.getAudio(key)
+            }
+          })
+        })
+      }
+
     },
     getAudio: function (item) {
       var self = this
-      self.audioName = item.attributes.name
-      var url = item.attributes.file.attributes.url
+      self.audioName = item.attributes ? item.attributes.name : item.name
+      var url = item.attributes ? item.attributes.file.attributes.url : item.url
       self.audioList.url = url
-      self.audioList.audioname = item.attributes.name
+      self.audioList.audioname = item.attributes ? item.attributes.name : item.name
     },
     getImage: function (item) {
       var self = this
-      self.images.push({'imageObjectId':item.id,'imageUrl':item.attributes.file.attributes.url})
+      self.images.push({'imageObjectId':item.id,'imageUrl':item.attributes ? item.attributes.file.attributes.url:item})
     },
     getAtlas: function (item) {
       var self = this
       self.atlasId = item.id
-      var query = new AV.Query('Material')
-      var todoFolder = AV.Object.createWithoutData('Material', self.atlasId);
-      query.equalTo('parent', todoFolder);
-      query.find().then(function (result) {
-        result.forEach(function (item) {
-          self.images.push({'imageObjectId':item.id,'imageUrl':item.attributes.file.attributes.url})
-        })
-      })
+      // var query = new AV.Query('Material')
+      // var todoFolder = AV.Object.createWithoutData('Material', self.atlasId);
+      // query.equalTo('parent', todoFolder);
+      // query.find().then(function (result) {
+      //   result.forEach(function (item) {
+      //     self.images.push({'imageObjectId':item.id,'imageUrl':item.attributes.file.attributes.url})
+      //   })
+      // })
+      //忘记了为什么写这里
     },
     getVideo: function (item) {
-      this.videoName = item.attributes.name
+      this.videoName = item.attributes ? item.attributes.name : item.name
       this.videoId = item.id
     },
     getPdf: function () {

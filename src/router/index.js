@@ -13,8 +13,10 @@ import Social from '@/page/Social'
 import LessonDetails from '@/page/LessonDetails'
 import PictureLoop from '@/page/PictureLoop'
 import ShowVideo from '@/page/showVideo'
+import VueResource from 'vue-resource'
 
 Vue.use(Router)
+Vue.use(VueResource)
 
 export default new Router({
   // mode:'history',
