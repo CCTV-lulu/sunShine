@@ -12,6 +12,7 @@ export default {
       Video:false,
       manifestUrl:false,
       materialHistory:false,
+      lessonTime:null,
       audioList: {
         //音频组件地址,只能传递一个,如果需要传递多个,可以自己修改源码  换成数组或者json
         url: "",
@@ -24,9 +25,12 @@ export default {
     }
   },
   mounted: function () {
-    this.getMaterialId()
-    this.getParams()
-    setInterval(this.burLessonTime(),6000)
+    var self = this
+    self.getMaterialId()
+    self.getParams()
+    self.lessonTime = setInterval(function(){
+      self.burLessonTime();
+    },60000)
   },
   methods: {
     burLessonTime:function(){
@@ -37,7 +41,7 @@ export default {
           attr: {
             浏览课程总时间:self.name
           },
-          duration: 6000
+          duration: 60000
         },
       ]
       analytics.send(eventList, function(result) {
@@ -113,6 +117,7 @@ export default {
       })
     },
     back: function () {
+      clearInterval(this.lessonTime)
       this.$router.back(-1)
     },
     playVideo:function (id) {

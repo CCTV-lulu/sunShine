@@ -54,6 +54,7 @@
           document.body.parentNode.style.overflow = "hidden"
         },
         logout:function () {
+          window.clearInterval(useTime)
           AV.User.logOut()
           this.$router.push({path: '/'})
           document.body.parentNode.style.overflow = "scroll"

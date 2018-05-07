@@ -28,6 +28,13 @@ export default {
       AV.User.logInWithMobilePhoneSmsCode(self.telNumber,self.codeNumber).then(function (success) {
         self.sendSuccessMessage("登录成功")
         self.$router.push({path: '/song'})
+        useTime = setInterval(function () {
+          analytics.send(timeEventList, function(result) {
+            if (result) {
+              console.log('统计用户使用时长！')
+            }
+          })
+        },60000)
       }, function (err) {
         var message;
         if (err.code === 603){
@@ -41,7 +48,6 @@ export default {
         }
         self.sendErrorMessage(message)
       });
-
     },
     getMsCode:function () {
       let self = this;
