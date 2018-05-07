@@ -26,8 +26,43 @@ export default {
   mounted: function () {
     this.getMaterialId()
     this.getParams()
+    setInterval(this.burLessonTime(),6000)
   },
   methods: {
+    burLessonTime:function(){
+      var self = this
+      var eventList =[
+        {
+          event: '浏览课程总时间',
+          attr: {
+            浏览课程总时间:self.name
+          },
+          duration: 6000
+        },
+      ]
+      analytics.send(eventList, function(result) {
+        if (result) {
+          console.log('统计浏览课程总时间发送成功！')
+        }
+      })
+    },
+    burPoint:function(){
+      var self = this
+      var eventList =[
+        {
+          event: '资源被打开数',
+          attr: {
+            资源被打开数:'资源被打开数',
+          },
+          duration: 2100
+        },
+        ]
+      analytics.send(eventList, function(result) {
+        if (result) {
+          console.log('统计数据发送成功！')
+        }
+      })
+    },
     getParams: function () {
       var self = this
       var id = self.$route.params.id
@@ -82,21 +117,25 @@ export default {
     },
     playVideo:function (id) {
       var self = this
+      self.burPoint()
       self.$router.push({
         path:'/video/'+id,
       })
     },
     playAudio: function () {
-        this.showAudio = true
+      this.burPoint()
+      this.showAudio = true
     },
     playImage: function () {
       var self = this
+      self.burPoint()
       self.$router.push({
         path:'/pictureLoop/'+self.atlasId,
       })
 
     },
     playPdf: function () {
+      this.burPoint()
       //todo
       //展示绘本
     },

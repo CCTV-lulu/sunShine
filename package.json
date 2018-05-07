@@ -1,8 +1,8 @@
 {
-  "name": "y",
+  "name": "sun",
   "version": "1.0.0",
-  "description": "y",
-  "author": "y",
+  "description": "sun",
+  "author": "lulu",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -14,8 +14,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "bower": "^1.8.4",
     "element-ui": "^2.2.2",
     "lib-flexible": "^0.3.2",
     "videojs-contrib-hls": "^5.14.1",
@@ -87,10 +85,5 @@
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  }
 }

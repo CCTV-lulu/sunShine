@@ -7,41 +7,36 @@
     <script src="/static/js/leancloud.js"></script>
     <script src="/static/js/AV.analytics.js"></script>
     <script>
+      var appId = 'CQBviH8f3TNrbRwzHfjTw7yk-gzGzoHsz'
+      var appKey = '5KnQsMhpWAAXYXvzbGV1YU62'
       AV.init({
-        appId: 'CQBviH8f3TNrbRwzHfjTw7yk-gzGzoHsz',
-        appKey: '5KnQsMhpWAAXYXvzbGV1YU62',
+        appId: appId,
+        appKey: appKey,
       })
-
+      var newEventList = [
+        {
+          event: '用户总使用时长',
+          attr: {
+            用户总使用时长: AV.User.current().toJSON().username,
+          },
+          duration: 6000
+        }
+        ]
       var eventList = [
         {
-          // 事件名称
-          event: 'test-event-name',
-
-          // 事件属性，任意数据
+          event: '用户打开应用次数',//打开网页
           attr: {
-            testa: 123,
-            testb: 'abc'
+            用户打开应用次数: AV.User.current().toJSON().username,
           },
-
-          // 该事件持续时间（毫秒）
-          duration: 6000
-        },
-        {
-          event: 'daasdfname',
           duration: 2100
         }
-      ];
-
+      ]
       // 实例化统计分析功能
       var analytics = AV.analytics({
         appId: 'CQBviH8f3TNrbRwzHfjTw7yk-gzGzoHsz',
         appKey: '5KnQsMhpWAAXYXvzbGV1YU62',
         version: '1.8.6',
-      }).send(eventList, function(result) {
-        if (result) {
-          console.log('统计数据发送成功！');
-        }
-      });
+      })
     </script>
   </head>
   <body>

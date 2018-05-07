@@ -45,7 +45,7 @@ export default {
     },
     getMsCode:function () {
       let self = this;
-      let maxTime = 30;
+      let maxTime = 60;
       this.isDisabled = true;
       clearInterval(this.timer);
       this.timer = setInterval(function () {
