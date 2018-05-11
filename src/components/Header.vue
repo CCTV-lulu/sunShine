@@ -14,13 +14,27 @@
     </el-row>
     <div class="community" v-if="community">
       <div class="titel-community">
-        <img  class="logo" src="@/assets/page_1.svg"/>
-        <span>阳光盒子</span>
-        <p class="p1">加入教师社区</p>
-        <p class="p2">微信扫描二维码加入教师社区</p>
-        <p class="p2"></p>
-        <img class="QR" src="@/assets/QR.png"/>
-        <p class="logout" @click="logout">登出</p>
+        <el-row class="titel">
+          <img  class="logo" src="@/assets/page_1.svg"/>
+          <span class="sunBox">阳光盒子</span>
+        </el-row>
+        <el-row>
+          <div class="list" @click="showLesson">
+            <img class="listImg" :src="allLessonImg"/>
+            <span :class="lesson">全部课程</span>
+          </div>
+          <div class="list" @click="favorite">
+            <img class="listImg" :src="likeImg"/>
+            <span :class="like">我的收藏</span>
+          </div>
+        </el-row>
+        <el-row>
+          <p class="author text">加入阳光“阳光创育者”</p>
+          <div>
+            <span class="logout text" @click="logout">登出</span>
+            <span class="user">{{userId}}</span>
+          </div>
+        </el-row>
       </div>
     </div>
     <div class="overlay" v-if="community" @click="recovery"></div>
@@ -34,8 +48,18 @@
             disabled: false,
             community:false,
             width:'',
-            height:''
+            height:'',
+            lesson:'height',
+            allLessonImg : '../../static/image/readlight.svg',
+            like: false,
+            likeImg : '../../static/image/default.svg',
+            userId:''
           }
+      },
+      mounted:function(){
+        var current = AV.User.current()
+        this.userId = current.toJSON().mobilePhoneNumber
+        console.log(current.toJSON().mobilePhoneNumber)
       },
       methods:{
         refresh:function () {
@@ -62,6 +86,21 @@
         recovery:function () {
           this.community = false
           document.body.parentNode.style.overflow = "scroll"
+        },
+        showLesson:function () {
+          this.lesson = 'height'
+          this.like = false
+          this.allLessonImg = '../../static/image/readlight.svg'
+          this.likeImg = '../../static/image/default.svg'
+          this.$router.push({path:'/song'})
+          this.community = false
+        },
+        favorite:function () {
+          this.lesson = false
+          this.like = 'height'
+          this.allLessonImg = '../../static/image/read.svg'
+          this.likeImg = '../../static/image/highlight.svg'
+          // this.$router.push({path:'/song'})
         }
       }
     }
@@ -115,28 +154,35 @@
     text-align:left;
     margin-left: 80px;
   }
+  .titel-community .titel{
+    margin-bottom: 40px;
+  }
   .titel-community .logo{
     vertical-align:middle
   }
-  .titel-community span{
+  .titel-community .sunBox{
     font-weight:bold;
     font-size: 25px;
+    margin-bottom: 20px;
   }
-  .titel-community .p1{
-    font-size: 23px;
+  .titel-community .list{
+    margin-bottom: 20px;
   }
-  .titel-community .p2{
-    font-size: 20px;
-    text-align:left;
-    margin-right: 40px;
+  .titel-community .height{
+    color: #f09028;
   }
-  .titel-community .QR{
-    margin-left: -20px;
+
+  .titel-community .listImg{
+    margin-bottom: -6px;
+    margin-right: 20px;
   }
-  .titel-community .logout{
-    margin-top: 50px;
-    font-size: 20px;
-    /*margin-right: 110px;*/
+  .titel-community .author{
+    margin-bottom: 30px;
+  }
+  .titel-community .user{
+    margin-left: 10px;
+    font-size: 12px;
+    color: #999999;
   }
 
 </style>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="124" height="121" viewBox="0 0 124 121">
+    <g fill="none" fill-rule="evenodd" stroke="#999" stroke-linecap="square" stroke-width="4" transform="translate(-2 -4)">
+        <path d="M116.958 62C121.262 54.056 124 46.216 124 39.144 124 20.838 109.348 6 91.272 6 79.882 6 69.862 11.898 64 20.838 58.138 11.898 48.118 6 36.728 6 18.652 6 4 20.838 4 39.144 4 72.286 64 122 64 122s2.664-2.206 6.868-6"/>
+        <circle cx="100" cy="94" r="24"/>
+        <path d="M100 86v16M92 94h16"/>
+    </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="24" viewBox="0 0 60 24">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#FFF" d="M0 0h48c6.627 0 12 5.373 12 12s-5.373 12-12 12H0V0z"/>
+        <text fill="#666" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400">
+            <tspan x="8" y="17">待审核</tspan>
+        </text>
+    </g>
+</svg>
