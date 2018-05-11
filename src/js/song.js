@@ -3,8 +3,7 @@ export default {
   name: "song",
   data(){
     return{
-      lessons:[]
-
+      lessons:[],
     }
   },
   mounted:function () {

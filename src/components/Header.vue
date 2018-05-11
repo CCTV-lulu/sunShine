@@ -59,7 +59,6 @@
       mounted:function(){
         var current = AV.User.current()
         this.userId = current.toJSON().mobilePhoneNumber
-        console.log(current.toJSON().mobilePhoneNumber)
       },
       methods:{
         refresh:function () {

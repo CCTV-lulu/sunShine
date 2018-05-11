@@ -9,8 +9,9 @@
       </div>
       <div v-if="lessons.length > 0">
         <el-col :span="8" v-for="(item, index) in lessons" :key="index" style="margin-top: 10px">
-          <div  @click="details(item.id +(item.verstion || ''),item.subject,item.name)">
+          <div class="list" @click="details(item.id +(item.verstion || ''),item.subject,item.name)">
             <img src="@/assets/group_7.png" />
+            <img v-if="item.isChecked == 1? true :false" class="status" src="../../static/image/group_14.svg"/>
             <div style="padding: 14px;">
               <span>{{item.name}}</span>
             </div>
@@ -31,5 +32,14 @@
     padding-top: 10%;
     margin-left: 300px;
     min-width: 900px;
+  }
+  .list{
+    position: relative;
+  }
+  .status{
+    position: absolute;
+    z-index: 100;
+    margin-top: 150px;
+    margin-left: -276px;
   }
 </style>

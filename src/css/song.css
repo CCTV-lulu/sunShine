@@ -6,3 +6,12 @@
   margin-left: 300px;
   min-width: 900px;
 }
+.list{
+  position: relative;
+}
+.status{
+  position: absolute;
+  z-index: 100;
+  margin-top: 150px;
+  margin-left: -276px;
+}

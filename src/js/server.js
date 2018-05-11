@@ -34,13 +34,13 @@ export default {
           result.forEach(function (key) {
             var subject = key._serverData.subject.id
             if (subject === '5a8e908dac502e0032b6225d'){
-              subjects.play.push({'name':key.attributes.name,'id':key.id })
+              subjects.play.push({'name':key.attributes.name,'id':key.id ,'isChecked':key.attributes.isChecked})
             }
             else if (subject === '5a701c82d50eee00444134b2'){
-              subjects.read.push({'name':key.attributes.name,'id':key.id })
+              subjects.read.push({'name':key.attributes.name,'id':key.id ,'isChecked':key.attributes.isChecked })
             }
             else if(subject === '5a741bcb2f301e003be904ed'){
-              subjects.music.push({'name':key.attributes.name,'id':key.id })
+              subjects.music.push({'name':key.attributes.name,'id':key.id ,'isChecked':key.attributes.isChecked})
             }
             else {
               subjects.song.push({'name':key.attributes.name,'id':key.id })
@@ -55,6 +55,7 @@ export default {
         query.equalTo('isPublished',true)
         query.find().then(function (result) {
           result.forEach(function (key) {
+
             if(key.attributes.isChecked ===3 || key.attributes.isChecked ===0){
               var subject = key._serverData.subject.id
               if (subject == '5a8e908dac502e0032b6225d'){
