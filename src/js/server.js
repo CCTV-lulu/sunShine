@@ -325,8 +325,96 @@ export default {
       }
 
     })
+  },
+  getLikeLesson:function (cb) {
+    var self = this
+    var currentUser = AV.User.current()
+    var userId = currentUser.id
+    var lessons=[]
+
+    var startDateQuery = new AV.Query('Favourite')
+    var todoFolder = AV.Object.createWithoutData('User', userId);
+    startDateQuery.equalTo('user', todoFolder)
+    var endDateQuery = new AV.Query('Favourite');
+    endDateQuery.equalTo('action', true)
+    var query = AV.Query.and(startDateQuery, endDateQuery);
+    query.find().then(function (result) {
+      self.getRoles(function (role) {
+        if(role){
+          //admin
+          self.adminLike(result,lessons,function (list) {
+            cb(list)
+          })
+        }else {
+          //teacher
+
+          self.teacherLike(result,lessons,function (list) {
+            cb(list)
+          })
+        }
+      })
+    })
+  },
+  adminLike:function (result,lessons,cb) {
+    var self = this
+    result.forEach(function (item) {
+      var lessonId = item.toJSON().lessonId
+      var query = new AV.Query('Lesson')
+      query.get(lessonId).then(function (todo) {
+        var subject = todo._serverData.subject.id
+        if(todo.toJSON().isChecked == 1){
+          //待审核
+          self.getHistoryLesson(todo.id,function (result) {
+            Vue.http.get(result).then(function (response) {
+              var subject = response.data.subjectId
+              lessons.push({'name':response.data.name,'id':response.data.id ,'subject':self.judgeSubject(subject),'verstion':'his'})
+            })
+          })
+        }
+        lessons.push({'name':todo.toJSON().name,'id':todo.id,'subject':self.judgeSubject(subject),'isChecked':todo.toJSON().isChecked})
+
+      })
+    })
+    cb(lessons)
+  },
+  teacherLike:function (result,lessons,cb) {
+    var self = this;
+    result.forEach(function (item) {
+      var lessonId = item.toJSON().lessonId
+      var query = new AV.Query('Lesson')
+      query.get(lessonId).then(function (todo) {
+        if(todo.toJSON().isChecked == 1 || todo.toJSON().isChecked == 2){
+          self.getHistoryLesson(todo.id,function (result) {
+            Vue.http.get(result).then(function (response) {
+              var subject = response.data.subjectId
+              lessons.push({'name':response.data.name,'id':response.data.id ,'subject':self.judgeSubject(subject),'verstion':'his'})
+            })
+          })
+        }else {
+          var subject = todo._serverData.subject.id
+          lessons.push({'name':todo.toJSON().name,'id':todo.id,'subject':self.judgeSubject(subject)})
+        }
+      })
+    })
+    cb(lessons)
+  },
+  checkoutLike:function (cb) {
+    var self = this
+    var currentUser = AV.User.current()
+    var userId = currentUser.id
+    var lessonIds=[]
+    var startDateQuery = new AV.Query('Favourite')
+    var todoFolder = AV.Object.createWithoutData('User', userId);
+    startDateQuery.equalTo('user', todoFolder)
+    var endDateQuery = new AV.Query('Favourite');
+    endDateQuery.equalTo('action', true)
+    var query = AV.Query.and(startDateQuery, endDateQuery);
+    query.find().then(function (result) {
+      result.forEach(function (item) {
+        lessonIds.push(item.toJSON().lessonId)
+      })
+      cb(lessonIds)
+    })
   }
-
-
 }
 

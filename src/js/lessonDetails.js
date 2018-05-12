@@ -1,3 +1,4 @@
+import Data from "@/js/server.js"
 export default {
   data() {
     return {
@@ -30,6 +31,7 @@ export default {
     var self = this
     self.getMaterialId()
     self.getParams()
+    self.inspectLike()
     self.lessonTime = setInterval(function(){
       self.burLessonTime();
     },60000)
@@ -284,11 +286,88 @@ export default {
       if(self.likeStatus == false){
         self.likeStatus = true
         self.likeImgUrl = '../../static/image/on.svg'
+        var timestamp = Date.parse(new Date());
+        var lessonId = ''
+        var id = self.$route.params.id
+        var sgin = id.substring(id.length-3,id.length)
+        if(sgin == 'his'){
+          lessonId = id.substring(0,id.length-3)
+        }else {
+          lessonId = self.$route.params.id
+        }
+        var data ={"collectionActionArr" : [{
+          "lessonId" : lessonId,
+          "lastModificationTime": timestamp,
+          "action" : self.likeStatus
+        }]}
+        AV.Cloud.run('collection', data).then(
+          function (value) {
+            self.$message({
+              type: 'success',
+              message: '收藏课程成功'
+            })
+            res.send(value)
+          }, function (error) {
+            self.$message({
+              type: 'error',
+              message: '收藏课程失败'
+            })
+            res.send(error)
+          }
+        )
       }else {
         self.likeStatus = false
         self.likeImgUrl = '../../static/image/default.svg'
+        var timestamp = Date.parse(new Date());
+        var id = self.$route.params.id
+        var lessonId
+        var id = self.$route.params.id
+        var sgin = id.substring(id.length-3,id.length)
+        if(sgin == 'his'){
+          lessonId = id.substring(0,id.length-3)
+        }else {
+          lessonId = self.$route.params.id
+        }
+        var data ={"collectionActionArr" : [{
+            "lessonId" : lessonId,
+            "lastModificationTime": timestamp,
+            "action" : self.likeStatus
+          }]}
+        AV.Cloud.run('collection', data).then(
+          function (value) {
+            self.$message({
+              type: 'success',
+              message: '取消收藏'
+            })
+            res.send(value)
+          }, function (error) {
+            self.$message({
+              type: 'error',
+              message: '取消收藏失败'
+            })
+            res.send(error)
+          }
+        )
       }
 
+    },
+    inspectLike:function () {
+      var self = this
+      var lessonId = ''
+      var id = self.$route.params.id
+      console.log(id)
+      var sgin = id.substring(id.length-3,id.length)
+      if(sgin == 'his'){
+        lessonId = id.substring(0,id.length-3)
+      }else {
+        lessonId = self.$route.params.id
+      }
+      Data.checkoutLike(function (result) {
+        if(result.indexOf(lessonId) != -1){
+          self.likeStatus = true
+          self.likeImgUrl = '../../static/image/on.svg'
+        }
+      })
     }
   }
 

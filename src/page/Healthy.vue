@@ -41,7 +41,7 @@
   }
   .status{
     position: absolute;
-    z-index: 100;
+    z-index: 80;
     bottom: 70px;
     margin-left: -276px;
   }

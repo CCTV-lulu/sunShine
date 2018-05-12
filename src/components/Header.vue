@@ -14,16 +14,16 @@
     </el-row>
     <div class="community" v-if="community">
       <div class="titel-community">
-        <el-row class="titel">
+        <el-row class="sunBoxTitel">
           <img  class="logo" src="@/assets/page_1.svg"/>
-          <span class="sunBox">title</span>
+          <span class="sunBox">阳光盒子</span>
         </el-row>
         <el-row>
-          <div class="list" @click="showLesson">
+          <div class="block" @click="showLesson">
             <img class="listImg" :src="allLessonImg"/>
             <span :class="lesson">全部课程</span>
           </div>
-          <div class="list" @click="favorite">
+          <div class="block" @click="favorite">
             <img class="listImg" :src="likeImg"/>
             <span :class="like">我的收藏</span>
           </div>
@@ -94,6 +94,7 @@
         showLesson:function () {
           this.$router.push({path:'/song'})
           this.community = false
+          document.body.parentNode.style.overflow = "scroll"
         },
         favorite:function () {
           this.$router.push({path:'/collection'})
@@ -163,7 +164,7 @@
     text-align:left;
     margin-left: 80px;
   }
-  .titel-community .titel{
+  .titel-community .sunBoxTitel{
     margin-bottom: 40px;
   }
   .titel-community .logo{
@@ -174,7 +175,7 @@
     font-size: 25px;
     margin-bottom: 20px;
   }
-  .titel-community .list{
+  .titel-community .block{
     margin-bottom: 20px;
   }
   .titel-community .height{
