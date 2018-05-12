@@ -29,52 +29,6 @@ export default {
           cb(result)
         })
       }else {
-        // var query = new AV.Query('Lesson')
-        // query.equalTo('isPublished',true)
-        // query.find().then(function (result) {
-        //   result.forEach(function (key) {
-        //     if(key.attributes.isChecked ===3 || key.attributes.isChecked ===0){
-        //       var subject = key._serverData.subject.id
-        //       if (subject == '5a8e908dac502e0032b6225d'){
-        //         subjects.play.push({'name':key.attributes.name,'id':key.id })
-        //       }
-        //       else if (subject == '5a701c82d50eee00444134b2'){
-        //         subjects.read.push({'name':key.attributes.name,'id':key.id })
-        //       }
-        //       else if(subject == '5a741bcb2f301e003be904ed'){
-        //         subjects.music.push({'name':key.attributes.name,'id':key.id })
-        //       }
-        //       else {
-        //         subjects.song.push({'name':key.attributes.name,'id':key.id })
-        //       }
-        //     }else if (key.attributes.isChecked === 1 || key.attributes.isChecked === 2) {
-        //       var lessonId = key.id
-        //       self.getHistoryLesson(lessonId,function (result) {
-        //         Vue.http.get(result).then(function (response) {
-        //           var subject = response.data.subjectId
-        //           if (subject == '5a8e908dac502e0032b6225d'){
-        //             subjects.play.push({'name':response.data.name,'id':response.data.id ,'verstion':'his'})
-        //           }
-        //           else if (subject == '5a701c82d50eee00444134b2'){
-        //             subjects.read.push({'name':response.data.name,'id':response.data.id ,'verstion':'his'})
-        //           }
-        //           else if(subject == '5a741bcb2f301e003be904ed'){
-        //             subjects.music.push({'name':response.data.name,'id':response.data.id ,'verstion':'his'})
-        //           }
-        //           else {
-        //             subjects.song.push({'name':response.data.name,'id':response.data.id ,'verstion':'his' })
-        //           }
-        //         },function (err) {
-        //
-        //         })
-        //       })
-        //
-        //     }
-        //   })
-        //   cb(subjects)
-        // },function (err) {
-        //   console.log(err)
-        // })
         self.teacherSubLesson(subjects,function (result) {
           cb(result)
         })
@@ -139,6 +93,7 @@ export default {
     })
   },
   teacherSubLesson:function(subjects,cb){
+    var self = this
     var query = new AV.Query('Lesson')
     query.equalTo('isPublished',true)
     query.find().then(function (result) {
@@ -195,67 +150,6 @@ export default {
             cb(result)
           })
       }else {
-      //   var query = new AV.Query('Lesson')
-      //   query.equalTo('isPublished',true)
-      //   query.find().then(function (result) {
-      //     result.forEach(function (key) {
-      //       if(key.attributes.isChecked ===3 || key.attributes.isChecked ===0){
-      //         var keyTags = key.attributes.tags
-      //         var subject = key._serverData.subject.id
-      //         keyTags.forEach(function (item) {
-      //           if (item == "domain.语言"){
-      //             tag.language.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
-      //           }
-      //           if(item =="domain.艺术" ){
-      //             tag.art.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
-      //           }
-      //           if(item =="domain.科学"){
-      //             tag.science.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
-      //           }
-      //           if(item =="domain.健康"){
-      //             tag.healthy.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
-      //           }
-      //           if(item =="domain.社会"){
-      //             tag.social.push({'name':key.attributes.name,'id':key.id ,'subject':self.judgeSubject(subject)})
-      //           }
-      //         })
-      //       }
-      //       else if(key.attributes.isChecked === 1 || key.attributes.isChecked === 2) {
-      //         //todo
-      //         //获取历史版本
-      //         var lessonId = key.id
-      //         self.getHistoryLesson(lessonId,function (result) {
-      //           Vue.http.get(result).then(function (response) {
-      //             var keyTags = response.data.tags
-      //             var subject = response.data.subjectId
-      //             keyTags.forEach(function (item) {
-      //               if (item == "domain.语言"){
-      //                 tag.language.push({'name':response.data.name,'id':response.data.id ,'subject':self.judgeSubject(subject),'verstion':'his'})
-      //               }
-      //               if(item =="domain.艺术" ){
-      //                 tag.art.push({'name':response.data.name,'id':response.data.id ,'subject':self.judgeSubject(subject),'verstion':'his'})
-      //               }
-      //               if(item =="domain.科学"){
-      //                 tag.science.push({'name':response.data.name,'id':response.data.id ,'subject':self.judgeSubject(subject),'verstion':'his'})
-      //               }
-      //               if(item =="domain.健康"){
-      //                 tag.healthy.push({'name':response.data.name,'id':response.data.id ,'subject':self.judgeSubject(subject),'verstion':'his'})
-      //               }
-      //               if(item =="domain.社会"){
-      //                 tag.social.push({'name':response.data.name,'id':response.data.id ,'subject':self.judgeSubject(subject),'verstion':'his'})
-      //               }
-      //             })
-      //           },function (err) {
-      //
-      //           })
-      //         })
-      //       }
-      //
-      //     })
-      //     cb(tag)
-      //   },function (err) {
-      //     console.log(err)
-      //   })
         self.teacherTagLesson(tag,function (result) {
           cb(result)
         })
@@ -435,3 +329,4 @@ export default {
 
 
 }
+
