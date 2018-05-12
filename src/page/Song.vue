@@ -1,6 +1,6 @@
 <template>
   <div >
-    <Header/>
+    <Header :Headlines="Headlines" :reset="reset"/>
     <SiderBar/>
     <div class="content">
       <div class="noHave" v-if="lessons.length == 0">

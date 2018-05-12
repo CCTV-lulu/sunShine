@@ -17,6 +17,11 @@
 .lessonName{
   float: left
 }
+.likeImage{
+  float: right;
+  margin-right: 50px;
+  margin-top: 16px;
+}
 .detailBody{
   padding-top: 70px;
 }
@@ -42,7 +47,7 @@
   float: left;
   padding-left: 20%;
 }
-.list{
+.materialList{
   float: left;
 }
 .listText{

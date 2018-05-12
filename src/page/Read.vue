@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+    <Header :Headlines="Headlines" :reset="reset"/>
     <SiderBar/>
     <div class="content">
       <div class="noHave" v-if="lessons.length == 0">
@@ -39,7 +39,7 @@
   .status{
     position: absolute;
     z-index: 100;
-    margin-top: 150px;
+    bottom: 70px;
     margin-left: -276px;
   }
 </style>

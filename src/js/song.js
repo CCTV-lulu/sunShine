@@ -4,6 +4,8 @@ export default {
   data(){
     return{
       lessons:[],
+      Headlines:'阳光盒子',
+      reset:true
     }
   },
   mounted:function () {

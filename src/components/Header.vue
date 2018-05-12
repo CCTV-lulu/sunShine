@@ -3,10 +3,10 @@
     <el-row>
     <el-col  :span="12">
     <img class="menu" src="@/assets/menu.png" @click="showMenu"/>
-    <h3 class="sunshine">阳光盒子</h3>
+    <h3 class="sunshine">{{Headlines}}</h3>
     </el-col >
     <el-col  :span="5" class="refresh" >
-      <el-button size="small":disabled="disabled" @click="refresh">
+      <el-button v-if="reset" size="small":disabled="disabled" @click="refresh">
         <img id="image" style="vertical-align:middle" src="@/assets/refresh_69.svg"/>
         <span class="ziti">刷新</span>
       </el-button>
@@ -16,7 +16,7 @@
       <div class="titel-community">
         <el-row class="titel">
           <img  class="logo" src="@/assets/page_1.svg"/>
-          <span class="sunBox">阳光盒子</span>
+          <span class="sunBox">title</span>
         </el-row>
         <el-row>
           <div class="list" @click="showLesson">
@@ -43,6 +43,10 @@
 
 <script>
     export default {
+      props:{
+        Headlines:String,
+        reset:Boolean
+      },
       data(){
           return{
             disabled: false,
@@ -59,6 +63,7 @@
       mounted:function(){
         var current = AV.User.current()
         this.userId = current.toJSON().mobilePhoneNumber
+        this.highlight(this.reset)
       },
       methods:{
         refresh:function () {
@@ -87,19 +92,24 @@
           document.body.parentNode.style.overflow = "scroll"
         },
         showLesson:function () {
-          this.lesson = 'height'
-          this.like = false
-          this.allLessonImg = '../../static/image/readlight.svg'
-          this.likeImg = '../../static/image/default.svg'
           this.$router.push({path:'/song'})
           this.community = false
         },
         favorite:function () {
-          this.lesson = false
-          this.like = 'height'
-          this.allLessonImg = '../../static/image/read.svg'
-          this.likeImg = '../../static/image/highlight.svg'
-          // this.$router.push({path:'/song'})
+          this.$router.push({path:'/collection'})
+        },
+        highlight:function (status) {
+          if(status){
+            this.lesson = 'height'
+            this.like = false
+            this.allLessonImg = '../../static/image/readlight.svg'
+            this.likeImg = '../../static/image/default.svg'
+          }else {
+            this.lesson = false
+            this.like = 'height'
+            this.allLessonImg = '../../static/image/read.svg'
+            this.likeImg = '../../static/image/highlight.svg'
+          }
         }
       }
     }

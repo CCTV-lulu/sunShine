@@ -2,7 +2,9 @@ import Data from "@/js/server.js"
 export default {
   data(){
     return{
-      lessons:[]
+      lessons:[],
+      Headlines:'阳光盒子',
+      reset:true
     }
   },
   mounted:function () {

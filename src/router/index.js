@@ -13,6 +13,7 @@ import Social from '@/page/Social'
 import LessonDetails from '@/page/LessonDetails'
 import PictureLoop from '@/page/PictureLoop'
 import ShowVideo from '@/page/showVideo'
+import Collection from '@/page/collection'
 import VueResource from 'vue-resource'
 
 Vue.use(Router)
@@ -85,6 +86,11 @@ export default new Router({
       path:'/video/:id',
       name:'viedo',
       component:ShowVideo
+    },
+    {
+      path:'/collection',
+      name:'collection',
+      component:Collection
     }
 
   ]

@@ -13,6 +13,8 @@ export default {
       manifestUrl:false,
       materialHistory:false,
       lessonTime:null,
+      likeImgUrl:"../../static/image/default.svg",
+      likeStatus:false,
       audioList: {
         //音频组件地址,只能传递一个,如果需要传递多个,可以自己修改源码  换成数组或者json
         url: "",
@@ -276,6 +278,17 @@ export default {
           }
         })
       })
+    },
+    changeLike:function () {
+      var self = this
+      if(self.likeStatus == false){
+        self.likeStatus = true
+        self.likeImgUrl = '../../static/image/on.svg'
+      }else {
+        self.likeStatus = false
+        self.likeImgUrl = '../../static/image/default.svg'
+      }
+
     }
   }
 

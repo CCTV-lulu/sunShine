@@ -4,6 +4,7 @@
       <el-row>
         <img class="menu" src="@/assets/back.png" @click="back"/>
         <h3 class="lessonName">{{name}}</h3>
+        <img class="likeImage" :src="likeImgUrl" @click="changeLike"/>
       </el-row>
     </div>
     <div class="detailBody">
@@ -15,20 +16,20 @@
           <p class="titel">教学材料</p>
 
           <el-col v-if="Video" v-for="(item, index) in videoList" :key="index">
-            <img src="@/assets/audio.png" class="list" @click="playVideo(item.videoId)"/>
+            <img src="@/assets/audio.png" class="materialList" @click="playVideo(item.videoId)"/>
             <p class="listText">{{item.videoName}}</p>
           </el-col>
 
           <el-col v-if="Audio">
-            <img src="@/assets/video.png" class="list" @click="playAudio"/>
+            <img src="@/assets/video.png" class="materialList" @click="playAudio"/>
             <p class="listText">{{audioName}}</p>
           </el-col>
           <el-col v-if="Atlas">
-            <img src="@/assets/image.png" class="list" @click="playImage"/>
+            <img src="@/assets/image.png" class="materialList" @click="playImage"/>
             <p class="listText">绘本</p>
           </el-col>
           <el-col v-if="pdf">
-            <img src="@/assets/pdf.png" class="list" @click="playPdf"/>
+            <img src="@/assets/pdf.png" class="materialList" @click="playPdf"/>
             <p class="listText">文档</p>
           </el-col>
         </el-row>
