@@ -9,8 +9,8 @@
       </div>
       <div v-if="lessons.length > 0">
         <el-col :span="8" v-for="(item, index) in lessons" :key="index" style="margin-top: 10px">
-          <div class="list" @click="details(item.id +(item.verstion || ''),item.subject,item.name)">
-            <img src="@/assets/group_8.png" />
+          <div class="list" >
+            <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" src="@/assets/group_8.png" />
             <img v-if="item.isChecked == 1? true :false" class="status" src="../../static/image/group_14.svg"/>
             <div style="padding: 14px;">
               <span>{{item.name}}</span>

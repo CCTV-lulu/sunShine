@@ -9,12 +9,12 @@
       </div>
       <div v-if="lessons.length > 0">
         <el-col :span="8" v-for="(item, index) in lessons" :key="index" style="margin-top: 10px">
-          <div class="list"  @click="details(item.id +(item.verstion || ''),item.subject,item.name)">
-            <img v-if="item.subject == 'song'" src="@/assets/group_5.png"/>
-            <img v-if="item.subject == 'music'" src="@/assets/group_6.png"/>
-            <img v-if="item.subject == 'play'" src="@/assets/group_8.png"/>
-            <img v-if="item.subject == 'read'" src="@/assets/group_7.png"/>
-            <img v-if="item.isChecked == 1? true :false" class="status" src="../../static/image/group_14.svg"/>
+          <div class="list"  >
+            <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.subject == 'song'" src="@/assets/group_5.png"/>
+            <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.subject == 'music'" src="@/assets/group_6.png"/>
+            <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.subject == 'play'" src="@/assets/group_8.png"/>
+            <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.subject == 'read'" src="@/assets/group_7.png"/>
+            <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.isChecked == 1? true :false" class="status" src="../../static/image/group_14.svg"/>
             <div style="padding: 14px;">
               <span>{{item.name}}</span>
             </div>
