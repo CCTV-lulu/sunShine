@@ -124,6 +124,13 @@
               res.send(error)
             }
           )
+        },
+        checkLongin:function () {
+          var self = this
+          var currentUser = AV.User.current();
+          if (currentUser == null) {
+            self.$router.push({path:'/'})
+          }
         }
       }
     }

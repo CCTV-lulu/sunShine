@@ -35,6 +35,18 @@
   height: auto;
   width: 100%;
 }
+.markdown h1{
+  text-align: center;
+  font-weight: bold;
+  color:#42B89E ;
+  /*line-height: 32px;*/
+  /*margin-top: 48px;*/
+  /*margin-bottom: 32px;*/
+}
+.markdown h2{
+  font-weight: bold;
+  color:#42B89E ;
+}
 .rightList{
   position: fixed;
   margin-left: 75%;

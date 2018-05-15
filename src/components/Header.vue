@@ -15,8 +15,9 @@
     <div class="community" v-if="community">
       <div class="titel-community">
         <el-row class="sunBoxTitel">
-          <img  class="logo" src="@/assets/page_1.svg"/>
+          <img  class="logo" src="../../static/image/logo.png"/>
           <span class="sunBox">阳光盒子</span>
+          <p class="user">{{userId}}</p>
         </el-row>
         <el-row>
           <div class="block" @click="showLesson">
@@ -29,10 +30,9 @@
           </div>
         </el-row>
         <el-row>
-          <p class="author text">加入阳光“阳光创育者”</p>
+          <p class="author text">加入“阳光创育者”</p>
           <div>
             <span class="logout text" @click="logout">登出</span>
-            <span class="user">{{userId}}</span>
           </div>
         </el-row>
       </div>
@@ -165,7 +165,7 @@
     margin-left: 80px;
   }
   .titel-community .sunBoxTitel{
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   .titel-community .logo{
     vertical-align:middle
@@ -190,8 +190,7 @@
     margin-bottom: 30px;
   }
   .titel-community .user{
-    margin-left: 10px;
-    font-size: 12px;
+    font-size: 18px;
     color: #999999;
   }
 
