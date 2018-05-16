@@ -36,16 +36,52 @@
   width: 100%;
 }
 .markdown h1{
-  text-align: center;
-  font-weight: bold;
-  color:#42B89E ;
-  /*line-height: 32px;*/
-  /*margin-top: 48px;*/
-  /*margin-bottom: 32px;*/
+  /*font-weight: bold;*/
+  color: #f09038;
 }
 .markdown h2{
-  font-weight: bold;
-  color:#42B89E ;
+  position: relative;
+  /*font-weight: bold;*/
+  color:white ;
+  text-align: center;
+  line-height: 32px;
+  margin-left: 45%;
+  width: 130px;
+  background:  #f09038;
+  border-radius: 15px;
+}
+.markdown h2:before{
+  position: absolute;
+  content: "";
+  top: -5px;
+  left: -25px;
+  height: 100px;
+  width: 20px;
+  background-image: url('../../static/image/markdownTop.png');
+  background-repeat:no-repeat;
+}
+.markdown h2:after{
+  position: absolute;
+  content: "";
+  top: -5px;
+  right: -30px;
+  height: 100px;
+  width: 20px;
+  background-image: url('../../static/image/markdownBottom.png');
+  background-repeat:no-repeat;
+}
+.markdown h3{
+  position: relative;
+  margin-left: 10px;
+  color: #f09038;
+}
+.markdown h3:before{
+  position: absolute;
+  content: "";
+  height: 25px;
+  width: 5px;
+  left: -10px;
+  background : #f09038;
 }
 .rightList{
   position: fixed;
@@ -69,4 +105,20 @@
 .videoBox{
   margin-top: 20%;
   /*border: darkgray solid 1px*/
+}
+.welcomeLesson{
+  position: fixed;
+  height: 200px;
+  width: 400px;
+  margin-top: 50%;
+  margin-left: 100px;
+  background-color: aliceblue;
+}
+.welcomeLesson .IknowLesson{
+  margin-top: 80px;
+  margin-left: 300px;
+  color: #42B89E;
+}
+.welcomeLesson .geName{
+  margin-right: 160px;
 }

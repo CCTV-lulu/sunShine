@@ -24,7 +24,8 @@ export default {
       },
       comment: {
         body: ''
-      }
+      },
+      guide:false
     }
   },
   mounted: function () {
@@ -35,6 +36,10 @@ export default {
     self.lessonTime = setInterval(function(){
       self.burLessonTime();
     },60000)
+    self.guide = guideLesson
+    if(self.guide){
+      document.body.parentNode.style.overflow = "hidden"
+    }
   },
   methods: {
     burLessonTime:function(){
@@ -368,6 +373,18 @@ export default {
           self.likeImgUrl = '../../static/image/on.svg'
         }
       })
+    },
+    recovery:function () {
+      this.guide = false
+      guideLesson = false
+      document.body.parentNode.style.overflow = "scroll"
+    },
+    checkLongin:function () {
+      var self = this
+      var currentUser = AV.User.current();
+      if (currentUser == null) {
+        self.$router.push({path:'/'})
+      }
     }
   }
 

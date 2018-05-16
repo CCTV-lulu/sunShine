@@ -5,12 +5,17 @@ export default {
     return{
       lessons:[],
       Headlines:'阳光盒子',
-      reset:true
+      reset:true,
+      guide:false
     }
   },
   mounted:function () {
     this.getLesson()
     this.checkLongin()
+    this.guide = guideSong
+    if(this.guide){
+      document.body.parentNode.style.overflow = "hidden"
+    }
   },
   methods:{
     burPoint: function (subject,name){
@@ -66,7 +71,12 @@ export default {
       if (currentUser == null) {
         self.$router.push({path:'/'})
       }
-    }
+    },
+    recovery:function () {
+      this.guide = false
+      guideSong = false
+      document.body.parentNode.style.overflow = "scroll"
+    },
   }
 
 }

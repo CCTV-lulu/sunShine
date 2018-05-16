@@ -25,8 +25,16 @@ export default {
   methods: {
     login:function () {
       let self = this;
+      var localUser = window.localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) :[]
       AV.User.logInWithMobilePhoneSmsCode(self.telNumber,self.codeNumber).then(function (success) {
         self.sendSuccessMessage("登录成功")
+        var user = AV.User.current().toJSON().mobilePhoneNumber
+        if (localUser.indexOf(user) == -1){
+          localUser.push(user)
+          localStorage.setItem('userInfo',JSON.stringify(localUser))
+          guideSong = true
+          guideLesson = true
+        }
         self.$router.push({path: '/song'})
         useTime = setInterval(function () {
           analytics.send(timeEventList, function(result) {

@@ -19,6 +19,12 @@
           </el-col>
       </div>
     </div>
+    <div class="overlay" v-if="guide">
+      <div class="welcome">
+        <h3>欢迎使用阳光盒子</h3>
+        <p class="Iknow" @click="recovery">我知道了</p>
+      </div>
+    </div>
   </div>
 </template>
 

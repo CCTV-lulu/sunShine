@@ -5,12 +5,12 @@
     <img class="menu" src="@/assets/menu.png" @click="showMenu"/>
     <h3 class="sunshine">{{Headlines}}</h3>
     </el-col >
-    <el-col  :span="5" class="refresh" >
-      <el-button v-if="reset" size="small":disabled="disabled" @click="refresh">
-        <img id="image" style="vertical-align:middle" src="@/assets/refresh_69.svg"/>
-        <span class="ziti">刷新</span>
-      </el-button>
-    </el-col >
+    <!--<el-col  :span="5" class="refresh" >-->
+      <!--<el-button v-if="reset" size="small":disabled="disabled" @click="refresh">-->
+        <!--<img id="image" style="vertical-align:middle" src="@/assets/refresh_69.svg"/>-->
+        <!--<span class="ziti">刷新</span>-->
+      <!--</el-button>-->
+    <!--</el-col >-->
     </el-row>
     <div class="community" v-if="community">
       <div class="titel-community">

@@ -38,6 +38,13 @@
         </div>
       </div>
     </div>
+    <div class="overlay" v-if="guide">
+      <div class="welcomeLesson">
+        <h3 class="geName">我们帮助你丰富你的课堂</h3>
+        <p>按页面左侧的教案来备课，课堂中使用的素材在右侧</p>
+        <p class="IknowLesson" @click="recovery">我知道了</p>
+      </div>
+    </div>
     <!--<div class="container">-->
     <!--<Audio :sources="video.sources" :options="video.options"></Video>-->
     <!--</div>-->
