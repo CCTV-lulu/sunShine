@@ -6,7 +6,9 @@ export default {
       lessons:[],
       Headlines:'阳光盒子',
       reset:true,
-      guide:false
+      guide:false,
+      allHide:false,
+      leader:false
     }
   },
   mounted:function () {
@@ -14,6 +16,7 @@ export default {
     this.checkLongin()
     this.guide = guideSong
     if(this.guide){
+      this.allHide = this.guide
       document.body.parentNode.style.overflow = "hidden"
     }
   },
@@ -72,7 +75,12 @@ export default {
         self.$router.push({path:'/'})
       }
     },
+    next:function(){
+      this.leader = true
+      this.allHide = false
+    },
     recovery:function () {
+      this.leader = false
       this.guide = false
       guideSong = false
       document.body.parentNode.style.overflow = "scroll"

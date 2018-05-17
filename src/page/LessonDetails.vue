@@ -39,10 +39,16 @@
       </div>
     </div>
     <div class="overlay" v-if="guide">
-      <div class="welcomeLesson">
-        <h3 class="geName">我们帮助你丰富你的课堂</h3>
+      <div class="welcomeLesson" v-if="allHide">
+        <h3 class="geName" >我们帮助你丰富你的课堂</h3>
         <p>按页面左侧的教案来备课，课堂中使用的素材在右侧</p>
-        <p class="IknowLesson" @click="recovery">我知道了</p>
+        <p class="IknowLesson" @click="next">继续</p>
+      </div>
+      <div class="circleLike" v-if="leader"></div>
+      <div class="likeLesson" v-if="leader">
+        <h3 class="likeName">这课很好先记下来</h3>
+        <p class="likeInfo">点击小心心收藏课程</p>
+        <p class="likeIknow" @click="recovery">继续</p>
       </div>
     </div>
     <!--<div class="container">-->

@@ -20,9 +20,16 @@
       </div>
     </div>
     <div class="overlay" v-if="guide">
-      <div class="welcome">
-        <h3>欢迎使用阳光盒子</h3>
-        <p class="Iknow" @click="recovery">我知道了</p>
+      <div class="welcome" v-if="allHide">
+        <h3 class="allname">欢迎使用阳光盒子</h3>
+        <p class="info">点击图片进入课程</p>
+        <p class="Iknow" @click="next">继续</p>
+      </div>
+      <div class="circle" v-if="leader"></div>
+      <div class="leader" v-if="leader">
+        <h3 class="leaderName">按科目和领域找课程</h3>
+        <p class="leaderinfo">点击科目和领域可以筛选课程</p>
+        <p class="leaderIknow" @click="recovery">继续</p>
       </div>
     </div>
   </div>

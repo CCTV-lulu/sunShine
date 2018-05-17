@@ -25,7 +25,9 @@ export default {
       comment: {
         body: ''
       },
-      guide:false
+      guide:false,
+      allHide:false,
+      leader:false
     }
   },
   mounted: function () {
@@ -38,6 +40,7 @@ export default {
     },60000)
     self.guide = guideLesson
     if(self.guide){
+      this.allHide = this.guide
       document.body.parentNode.style.overflow = "hidden"
     }
   },
@@ -373,6 +376,10 @@ export default {
           self.likeImgUrl = '../../static/image/on.svg'
         }
       })
+    },
+    next:function(){
+      this.leader = true
+      this.allHide = false
     },
     recovery:function () {
       this.guide = false

@@ -16,7 +16,7 @@
   margin-left: -276px;
 }
 .overlay{
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -25,15 +25,51 @@
   z-index: 200;
 }
 .welcome{
-  position: fixed;
-  height: 200px;
-  width: 400px;
-  margin-top: 50%;
-  margin-left: 50%;
-  background-color: aliceblue;
+   position: fixed;
+   height: 200px;
+   width: 400px;
+   margin-top: 50%;
+   margin-left: 20%;
+   background-color: aliceblue;
+ }
+.welcome .allname{
+  margin-right: 155px;
+}
+.welcome .info{
+  margin-right: 180px;
 }
 .welcome .Iknow{
-  margin-top: 100px;
+  margin-top: 80px;
   margin-left: 300px;
   color: #42B89E;
+}
+.leader{
+  position: absolute;
+  height: 200px;
+  width: 400px;
+  margin-top: -180px;
+  margin-left: 230px;
+  background-color: white;
+  z-index: 1000;
+}
+.leader .leaderName{
+  margin-right: 155px;
+}
+.leader .leaderinfo{
+  margin-right: 130px;
+}
+.leader .leaderIknow{
+  margin-top: 80px;
+  margin-left: 300px;
+  color: #42B89E;
+}
+.circle{
+  margin-top: 100px;
+  margin-left: 50px;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: url("../../static/image/leader.png");
+  border-radius: 50%;
+  z-index: 500;
 }
