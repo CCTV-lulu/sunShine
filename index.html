@@ -15,15 +15,18 @@
         appId: appId,
         appKey: appKey,
       })
-      var timeEventList = [
-        {
-          event: '用户总使用时长',
-          attr: {
-            用户总使用时长: AV.User.current().toJSON().username,
-          },
-          duration: 60000
-        }
+      if(AV.User.current()!= null){
+        var timeEventList = [
+          {
+            event: '用户总使用时长',
+            attr: {
+              用户总使用时长: AV.User.current().toJSON().username,
+            },
+            duration: 60000
+          }
         ]
+      }
+
       var eventList = [
         {
           event: '用户打开应用次数',//打开网页

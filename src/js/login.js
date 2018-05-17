@@ -36,13 +36,13 @@ export default {
           guideLesson = true
         }
         self.$router.push({path: '/song'})
-        useTime = setInterval(function () {
-          analytics.send(timeEventList, function(result) {
-            if (result) {
-              console.log('统计用户使用时长！')
-            }
-          })
-        },60000)
+        // useTime = setInterval(function () {
+        //   analytics.send(timeEventList, function(result) {
+        //     if (result) {
+        //       console.log('统计用户使用时长！')
+        //     }
+        //   })
+        // },60000)
       }, function (err) {
         var message;
         if (err.code === 603){

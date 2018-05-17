@@ -363,7 +363,6 @@ export default {
       var self = this
       var lessonId = ''
       var id = self.$route.params.id
-      console.log(id)
       var sgin = id.substring(id.length-3,id.length)
       if(sgin == 'his'){
         lessonId = id.substring(0,id.length-3)

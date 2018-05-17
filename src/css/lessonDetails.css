@@ -113,7 +113,7 @@
   position: fixed;
   height: 200px;
   width: 400px;
-  margin-top: 50%;
+  margin-top: 500px;
   margin-left: 100px;
   background-color: aliceblue;
 }
@@ -130,8 +130,9 @@
   height: 200px;
   width: 400px;
   top: 80px;
-  right: 8%;
+  right: 3%;
   background-color: white;
+  z-index: 1000;
 }
 .likeLesson .likeIknow{
   margin-top: 80px;
@@ -145,12 +146,7 @@
   margin-right: 160px;
 }
 .circleLike{
-  /*margin-top: 100px;*/
   margin-left: 90%;
   position: relative;
-  width: 100px;
-  height: 100px;
-  background: url("../../static/image/like.png") no-repeat;
-  border-radius: 50%;
   z-index: 500;
 }
