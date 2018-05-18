@@ -15,6 +15,12 @@
   bottom: 70px;
   margin-left: -276px;
 }
+.heart{
+  position: absolute;
+  z-index: 80;
+  top: 20px;
+  margin-left: -50px;
+}
 .overlay{
   position: absolute;
   top: 0;

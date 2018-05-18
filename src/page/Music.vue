@@ -12,7 +12,7 @@
           <div class="list" >
             <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" src="@/assets/group_6.png" />
             <img v-if="item.isChecked == 1? true :false" class="status" src="../../static/image/group_14.svg"/>
-
+            <img class="heart" v-if="item.like?true:false" src="../../static/image/inversesolid.svg"/>
             <div style="padding: 14px;">
               <span>{{item.name}}</span>
             </div>

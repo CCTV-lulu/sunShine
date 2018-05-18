@@ -30,7 +30,7 @@
           </div>
         </el-row>
         <el-row>
-          <p class="author text">加入“阳光创育者”</p>
+          <p class="author text" @click="See(url)">加入“阳光创育者”</p>
           <div>
             <span class="logout text" @click="logout">登出</span>
           </div>
@@ -111,6 +111,9 @@
             this.allLessonImg = '../../static/image/read.svg'
             this.likeImg = '../../static/image/highlight.svg'
           }
+        },
+        See:function (e) {
+          window.location.href = 'https://mp.weixin.qq.com/s/6_cLqHvVkZ9o2w0PBObOCw'
         }
       }
     }
@@ -145,7 +148,7 @@
   .community{
     position: fixed;
     height: 1000px;
-    width: 400px;
+    width: 300px;
     background-color: white;
     margin-top: -100px;
     z-index: 1000;

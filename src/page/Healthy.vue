@@ -15,6 +15,7 @@
             <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.subject == 'play'" src="@/assets/group_8.png"/>
             <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.subject == 'read'" src="@/assets/group_7.png"/>
             <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.isChecked == 1? true :false" class="status" src="../../static/image/group_14.svg"/>
+            <img class="heart" v-if="item.like? true:false" src="../../static/image/inversesolid.svg"/>
             <div style="padding: 14px;">
               <span>{{item.name}}</span>
             </div>
@@ -44,5 +45,11 @@
     z-index: 80;
     bottom: 70px;
     margin-left: -276px;
+  }
+  .heart{
+    position: absolute;
+    z-index: 80;
+    top: 20px;
+    margin-left: -50px;
   }
 </style>

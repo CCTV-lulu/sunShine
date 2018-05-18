@@ -51,6 +51,14 @@ export default {
       var self = this
       Data.getAllData(function (result) {
         self.lessons = result.music
+        self.lessons.forEach(function (item) {
+            Data.checkoutLike(function (result) {
+              if(result.indexOf(item.id) != -1){
+                item.like = true
+              }
+            })
+          })
+        console.log(self.lessons)
       })
     },
     details:function (id,subject,name) {

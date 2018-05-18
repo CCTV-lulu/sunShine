@@ -51,6 +51,15 @@ export default {
       var self = this
       Data.getAllTag(function (result) {
         self.lessons = result.art
+        self.lessons.forEach(function (item) {
+          self.lessons.forEach(function (item) {
+            Data.checkoutLike(function (result) {
+              if(result.indexOf(item.id) != -1){
+                item.like = true
+              }
+            })
+          })
+        })
       })
     },
     details:function (id,subject,name) {
