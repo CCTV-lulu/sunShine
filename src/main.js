@@ -13,6 +13,21 @@ import Video from '@/components/Video'
 import Sublist from '@/components/Sublist'
 import VueMarkdown from 'vue-markdown'
 
+Vue.http.get('../static/config.json').then(function (result) {
+  var APP_ID = result.body.appId;
+  var APP_KEY = result.body.appKey;
+  AV.init({
+    appId: APP_ID,
+    appKey: APP_KEY
+  });
+  var analytics = AV.analytics({
+    appId: APP_ID,
+    appKey: APP_KEY,
+    version: '1.8.6',
+  })
+  init()
+})
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -22,11 +37,15 @@ Vue.component('Audio',Audio)
 Vue.component('Video',Video)
 Vue.component('VueMarkdown',VueMarkdown)
 Vue.component('Sublist',Sublist)
+// Vue.use(AV)
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
+function init() {
+  new Vue({
+    el: '#app',
+    router,
+    components: { App },
+    template: '<App/>'
+  })
+}
+

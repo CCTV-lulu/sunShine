@@ -11,56 +11,56 @@
       var appKey = '5KnQsMhpWAAXYXvzbGV1YU62'
       var guideSong = false
       var guideLesson = false
-      AV.init({
-        appId: appId,
-        appKey: appKey,
-      })
-      if(AV.User.current()!= null){
-        var timeEventList = [
-          {
-            event: '用户总使用时长',
-            attr: {
-              用户总使用时长: AV.User.current().toJSON().username,
-            },
-            duration: 60000
-          }
-        ]
-      }
-
-      var eventList = [
-        {
-          event: '用户打开应用次数',//打开网页
-          attr: {
-            用户打开应用次数: AV.User.current().toJSON().username,
-          },
-          duration: 2100
-        }
-      ]
-      // 实例化统计分析功能
-      var analytics = AV.analytics({
-        appId: 'CQBviH8f3TNrbRwzHfjTw7yk-gzGzoHsz',
-        appKey: '5KnQsMhpWAAXYXvzbGV1YU62',
-        version: '1.8.6',
-      })
-      var useTime
-      var int = setInterval(function () {
-        if(AV.User.current()){
-          window.clearInterval(int)
-          analytics.send(eventList, function(result) {
-            if (result) {
-              console.log('统计打开应用次数！')
-            }
-          })
-          useTime = setInterval(function () {
-            analytics.send(timeEventList, function(result) {
-              if (result) {
-                console.log('统计用户使用时长！')
-              }
-            })
-          },60000)
-        }
-
-      },1000)
+      // AV.init({
+      //   appId: appId,
+      //   appKey: appKey,
+      // })
+      // if(AV.User.current()!= null){
+      //   var timeEventList = [
+      //     {
+      //       event: '用户总使用时长',
+      //       attr: {
+      //         用户总使用时长: AV.User.current().toJSON().username,
+      //       },
+      //       duration: 60000
+      //     }
+      //   ]
+      // }
+      //
+      // var eventList = [
+      //   {
+      //     event: '用户打开应用次数',//打开网页
+      //     attr: {
+      //       用户打开应用次数: AV.User.current().toJSON().username,
+      //     },
+      //     duration: 2100
+      //   }
+      // ]
+      // // 实例化统计分析功能
+      // var analytics = AV.analytics({
+      //   appId: 'CQBviH8f3TNrbRwzHfjTw7yk-gzGzoHsz',
+      //   appKey: '5KnQsMhpWAAXYXvzbGV1YU62',
+      //   version: '1.8.6',
+      // })
+      // var useTime
+      // var int = setInterval(function () {
+      //   if(AV.User.current()){
+      //     window.clearInterval(int)
+      //     analytics.send(eventList, function(result) {
+      //       if (result) {
+      //         console.log('统计打开应用次数！')
+      //       }
+      //     })
+      //     useTime = setInterval(function () {
+      //       analytics.send(timeEventList, function(result) {
+      //         if (result) {
+      //           console.log('统计用户使用时长！')
+      //         }
+      //       })
+      //     },60000)
+      //   }
+      //
+      // },1000)
 
     </script>
   </head>
