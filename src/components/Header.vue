@@ -1,16 +1,25 @@
 <template>
   <div class="header">
     <el-row>
-    <el-col  :span="12">
-    <img class="menu" src="@/assets/menu.png" @click="showMenu"/>
-    <h3 class="sunshine">{{Headlines}}</h3>
-    </el-col >
+      <el-col  :span="9">
+      <img class="menu" src="@/assets/menu.png" @click="showMenu"/>
+      <h3 class="sunshine">{{Headlines}}</h3>
+      </el-col >
     <!--<el-col  :span="5" class="refresh" >-->
       <!--<el-button v-if="reset" size="small":disabled="disabled" @click="refresh">-->
         <!--<img id="image" style="vertical-align:middle" src="@/assets/refresh_69.svg"/>-->
         <!--<span class="ziti">刷新</span>-->
       <!--</el-button>-->
     <!--</el-col >-->
+      <el-col class="all-lesson" :span="10">
+        <el-menu  class="el-menu-demo" mode="horizontal"
+                  text-color="black"
+                  active-text-color="#f09028" :default-active="$route.path" :router="true">
+          <el-menu-item class="el-menu-item-demo" index="/song">全部课程</el-menu-item>
+          <el-menu-item class="el-menu-item-demo" index="/special">专题</el-menu-item>
+        </el-menu>
+      </el-col>
+
     </el-row>
     <div class="community" v-if="community">
       <div class="titel-community">
@@ -134,17 +143,19 @@
     height: 70px;
     width: 100%;
   }
+  .el-menu-demo{
+    padding-left: 50px;
+  }
+  .el-menu-item-demo{
+    margin-left: 20px;
+    font-weight: 600;
+    width: 100px;
+    height: 69.6px;
+  }
   .sunshine{
     float: left
   }
-  .refresh{
-    float: right;
-    margin-top: 10px;
-  }
-  .ziti{
-    font-size: 20px;
-    vertical-align:middle
-  }
+
   .community{
     position: fixed;
     height: 1000px;

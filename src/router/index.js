@@ -14,6 +14,8 @@ import LessonDetails from '@/page/LessonDetails'
 import PictureLoop from '@/page/PictureLoop'
 import ShowVideo from '@/page/showVideo'
 import Collection from '@/page/Collection'
+import Special from  '@/page/Special'
+import SpecialList from '@/page/SpecialList'
 import VueResource from 'vue-resource'
 
 Vue.use(Router)
@@ -91,6 +93,16 @@ export default new Router({
       path:'/collection',
       name:'collection',
       component:Collection
+    },
+    {
+      path:'/special',
+      name:'special',
+      component:Special
+    },
+    {
+      path:'/specialList/:id',
+      name:'specialList',
+      component:SpecialList
     }
 
   ]

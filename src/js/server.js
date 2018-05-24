@@ -20,7 +20,7 @@ export default {
       cb(false)
     })
   },
-  getAllData:function (cb) {
+    getAllData:function (cb) {
     var self = this
     this.getRoles(function (result) {
       var subjects = {'song':[],'music':[],'read':[],'play':[]}
@@ -414,6 +414,54 @@ export default {
         lessonIds.push(item.toJSON().lessonId)
       })
       cb(lessonIds)
+    })
+  },
+  getSpecial:function (cb) {
+    var self = this
+    var specialLesson = {'allSpecial':[],'recommend':[]}
+    var query = new AV.Query('SpecialSubject')
+    query.equalTo('onLine', true)
+    query.find().then(function (result) {
+      result.forEach(function (item) {
+        specialLesson.allSpecial.push(item.toJSON())
+        if(item.toJSON().recommendStatus == true){
+            specialLesson.recommend.push(item.toJSON())
+        }
+      })
+      cb(specialLesson)
+    })
+  },
+  getSpecialLesson:function (specialId,cb) {
+    var self = this
+    var allLesson = []
+    var query = new AV.Query('LessonSpecial')
+    var special = AV.Object.createWithoutData('SpecialSubject',specialId)
+    query.equalTo('special', special)
+    query.include('lesson')
+    query.find().then(function (result) {
+      result.forEach(function (item) {
+        var lesson = item.toJSON().lesson
+        if(lesson.isPublished === true && lesson.isChecked !== 1 && lesson.isChecked !== 2){
+          allLesson.push({'name':lesson.name,'id':lesson.objectId,'subject':self.judgeSubject(lesson.subject.objectId)})
+        }
+        if(lesson.isPublished === true && lesson.isChecked === 1 && lesson.isChecked === 2){
+          self.getHistoryLesson(lessonId,function (result) {
+            Vue.http.get(result).then(function (response) {
+              allLesson.push({'name':response.data.name,'id':response.data.id ,'subject':self.judgeSubject(response.data.subjectId),'verstion':'his'})
+            })
+          })
+        }
+      })
+      cb(allLesson)
+    })
+
+  },
+  getOneSpection:function (specialId,cb) {
+    var self = this
+    var query = new AV.Query('SpecialSubject')
+    query.get(specialId).then(function (result) {
+      cb(result.toJSON())
+
     })
   }
 }
