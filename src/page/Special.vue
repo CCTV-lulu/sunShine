@@ -13,7 +13,7 @@
       </div>
       <div class="allSpecial">
         <p class="allTitle titel">全部专题</p>
-        <div v-for="(item) in specialLesson">
+        <div v-for="(item) in specialLesson" class="specialList">
           <div class="oneSpecial" @click="toSpecialSub(item.objectId)">{{item.title}}</div>
         </div>
       </div>
@@ -76,10 +76,14 @@
     margin-left: 10%;
     width: 80%;
   }
+  .specialList{
+    /*margin-left: 10%;*/
+  }
   .oneSpecial{
     float: left;
     line-height: 50px;
-    margin-right: 20px;
+    margin-right:30px;
+    margin-top: 30px;
     height: 50px;
     width: 130px;
     border-radius: 5px;

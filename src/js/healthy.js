@@ -47,18 +47,25 @@ export default {
         }
       })
     },
-    getLesson: function () {
+    getLesson:function () {
       var self = this
       Data.getAllTag(function (result) {
-        self.lessons = result.healthy
-        self.lessons.forEach(function (item) {
-          Data.checkoutLike(function (result) {
-            if(result.indexOf(item.id) != -1){
-              item.like = true
-            }
-          })
+        Data.checkoutLike(function (likeLessonList) {
+          self.lessons = self.handelLessonLikeStatus(result.healthy,likeLessonList)
+        })
+
+      })
+    },
+    handelLessonLikeStatus:function(lessonList,likeLessonList){
+      lessonList.forEach(function (lesson) {
+        lesson.like = false
+        likeLessonList.forEach(function (likeLesson) {
+          if(lesson.id === likeLesson){
+            lesson.like = true
+          }
         })
       })
+      return lessonList
     },
     details:function (id,subject,name) {
       this.$router.push({

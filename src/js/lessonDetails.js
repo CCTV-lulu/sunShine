@@ -46,38 +46,38 @@ export default {
   },
   methods: {
     burLessonTime:function(){
-      var self = this
-      var eventList =[
-        {
-          event: '浏览课程总时间',
-          attr: {
-            浏览课程总时间:self.name
-          },
-          duration: 60000
-        },
-      ]
-      analytics.send(eventList, function(result) {
-        if (result) {
-          console.log('统计浏览课程总时间发送成功！')
-        }
-      })
+      // var self = this
+      // var eventList =[
+      //   {
+      //     event: '浏览课程总时间',
+      //     attr: {
+      //       浏览课程总时间:self.name
+      //     },
+      //     duration: 60000
+      //   },
+      // ]
+      // analytics.send(eventList, function(result) {
+      //   if (result) {
+      //     console.log('统计浏览课程总时间发送成功！')
+      //   }
+      // })
     },
     burPoint:function(){
-      var self = this
-      var eventList =[
-        {
-          event: '资源被打开数',
-          attr: {
-            资源被打开数:'资源被打开数',
-          },
-          duration: 2100
-        },
-        ]
-      analytics.send(eventList, function(result) {
-        if (result) {
-          console.log('统计数据发送成功！')
-        }
-      })
+      // var self = this
+      // var eventList =[
+      //   {
+      //     event: '资源被打开数',
+      //     attr: {
+      //       资源被打开数:'资源被打开数',
+      //     },
+      //     duration: 2100
+      //   },
+      //   ]
+      // analytics.send(eventList, function(result) {
+      //   if (result) {
+      //     console.log('统计数据发送成功！')
+      //   }
+      // })
     },
     getParams: function () {
       var self = this

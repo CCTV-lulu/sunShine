@@ -17,7 +17,6 @@
             <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.subject == 'read'" src="@/assets/group_7.png"/>
             <img @click="details(item.id +(item.verstion || ''),item.subject,item.name)" v-if="item.isChecked == 1? true :false" class="status" src="../../static/image/group_14.svg"/>
             <img class="heart" v-if="item.like" src="../../static/image/inversesolid.svg"/>
-            <p>{{item.like}}</p>
             <div style="padding: 14px;">
               <span>{{item.name}}</span>
             </div>
@@ -45,22 +44,26 @@
         getLesson:function(){
           var self = this
           var specialId = self.$route.params.id
-          Data.getSpecialLesson(specialId,function (lesson) {
-            lesson.forEach(function (item) {
-              Data.checkoutLike(function (result) {
-                if(result.indexOf(item.id) != -1){
-                  item.like = true
-                }else {
-                  item.like = false
-                }
+          Data.getSpecialLesson(specialId,function (specialLessonList) {
+              Data.checkoutLike(function (likeLessonList) {
+                self.lessons = self.handelLessonLikeStatus(specialLessonList,likeLessonList)
               })
-            })
-            self.lessons = lesson
           })
           Data.getOneSpection(specialId,function (result) {
             self.name = result.title
             self.describe = result.describe
           })
+        },
+        handelLessonLikeStatus:function(specialLessonList,likeLessonList){
+          specialLessonList.forEach(function (specialLesson) {
+            specialLesson.like = false
+            likeLessonList.forEach(function (likeLesson) {
+              if(specialLesson.id === likeLesson){
+                specialLesson.like = true
+              }
+            })
+          })
+          return specialLessonList
         },
         back: function () {
           this.$router.back(-1)
@@ -126,12 +129,13 @@
     background-repeat:no-repeat;
   }
   .list{
+    position: relative;
     padding-top: 80px;
   }
   .heart{
-    position: relative;
+    position: absolute;
     z-index: 80;
-    top: -150px;
-    left: 80px;
+    top: 100px;
+    right: 40px;
   }
 </style>

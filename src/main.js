@@ -20,7 +20,8 @@ Vue.http.get('../static/config.json').then(function (result) {
     appId: APP_ID,
     appKey: APP_KEY
   });
-  var analytics = AV.analytics({
+  window.GLOBAL ={};
+  window.GLOBAL.analytics = AV.analytics({
     appId: APP_ID,
     appKey: APP_KEY,
     version: '1.8.6',
@@ -37,7 +38,6 @@ Vue.component('Audio',Audio)
 Vue.component('Video',Video)
 Vue.component('VueMarkdown',VueMarkdown)
 Vue.component('Sublist',Sublist)
-// Vue.use(AV)
 
 /* eslint-disable no-new */
 function init() {
