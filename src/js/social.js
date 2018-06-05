@@ -10,7 +10,6 @@ export default {
   },
   mounted:function () {
     this.getLesson()
-    this.checkLongin
   },
   methods: {
     burPoint: function (subject,lessonName){
@@ -45,12 +44,5 @@ export default {
       })
       this.burPoint(subject,name)
     },
-    checkLongin:function () {
-      var self = this
-      var currentUser = AV.User.current();
-      if (currentUser == null) {
-        self.$router.push({path:'/'})
-      }
-    }
   }
 }

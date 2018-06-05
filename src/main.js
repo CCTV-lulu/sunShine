@@ -12,6 +12,7 @@ import Audio from '@/components/Audio'
 import Video from '@/components/Video'
 import Sublist from '@/components/Sublist'
 import VueMarkdown from 'vue-markdown'
+import Analytics from "@/js/analytics.js"
 
 Vue.http.get('../static/config.json').then(function (result) {
   var APP_ID = result.body.appId;
@@ -26,7 +27,7 @@ Vue.http.get('../static/config.json').then(function (result) {
     appKey: APP_KEY,
     version: '1.8.6',
   })
-  init()
+  checkoutUser()
 })
 
 
@@ -40,6 +41,28 @@ Vue.component('VueMarkdown',VueMarkdown)
 Vue.component('Sublist',Sublist)
 
 /* eslint-disable no-new */
+function checkoutUser() {
+  router.beforeEach((to, from, next) => {
+    var currentUser = AV.User.current();
+    if (to.path === '/') {
+      next()
+    } else {
+      if (currentUser) {
+        Vue.prototype.currentUser = currentUser.toJSON().username
+        burPointOpenApp(currentUser.toJSON().username)
+        setInterval(function () {
+          burPointUseTime(currentUser.toJSON().username)
+        },60000)
+        next()
+      }
+      else {
+        next({path: '/'})
+      }
+    }
+  });
+
+  init();
+}
 function init() {
   new Vue({
     el: '#app',
@@ -48,4 +71,15 @@ function init() {
     template: '<App/>'
   })
 }
+function burPointOpenApp (userName){
+  var self = this
+  var actionList = ['appUserNum']
+  Analytics.analytics(actionList,'',userName,'')
+}
+function burPointUseTime(userName) {
+  var self = this
+  var actionList = ['userUseTime']
+  Analytics.analytics(actionList,'',userName,'')
+}
+
 

@@ -1,3 +1,4 @@
+import Analytics from "@/js/analytics.js"
 export default {
   name: "login",
   data(){
@@ -28,6 +29,10 @@ export default {
       var localUser = window.localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) :[]
       AV.User.logInWithMobilePhoneSmsCode(self.telNumber,self.codeNumber).then(function (success) {
         self.sendSuccessMessage("登录成功")
+        self.burPointOpenApp(AV.User.current().toJSON().username)
+        setInterval(function () {
+          self.burPointUseTime(AV.User.current().toJSON().username)
+        },60000)
         var user = AV.User.current().toJSON().mobilePhoneNumber
         if (localUser.indexOf(user) == -1){
           localUser.push(user)
@@ -36,13 +41,6 @@ export default {
           guideLesson = true
         }
         self.$router.push({path: '/song'})
-        // useTime = setInterval(function () {
-        //   analytics.send(timeEventList, function(result) {
-        //     if (result) {
-        //       console.log('统计用户使用时长！')
-        //     }
-        //   })
-        // },60000)
       }, function (err) {
         var message;
         if (err.code === 603){
@@ -61,14 +59,12 @@ export default {
       let self = this;
       let maxTime = 60;
       this.isDisabled = true;
-      clearInterval(this.timer);
       this.timer = setInterval(function () {
         maxTime--;
         self.SMSCodeText = "(" + maxTime + "s)";
         if (maxTime === 0) {
           self.SMSCodeText = '发送验证码';
-          self.isDisabled = false;
-          clearInterval(self.timer)
+          self.isDisabled = false
         }
       }, 1000);
       AV.User.requestLoginSmsCode(self.telNumber).then(function (success) {
@@ -97,6 +93,16 @@ export default {
         type: 'success',
         message: message
       })
+    },
+    burPointOpenApp (userName){
+      var self = this
+      var actionList = ['appUserNum']
+      Analytics.analytics(actionList,'',userName,'')
+    },
+    burPointUseTime(userName) {
+      var self = this
+      var actionList = ['userUseTime']
+      Analytics.analytics(actionList,'',userName,'')
     }
 
   }

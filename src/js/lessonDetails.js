@@ -47,21 +47,9 @@ export default {
   },
   methods: {
     burLessonTime:function(){
-      // var self = this
-      // var eventList =[
-      //   {
-      //     event: '浏览课程总时间',
-      //     attr: {
-      //       浏览课程总时间:self.name
-      //     },
-      //     duration: 60000
-      //   },
-      // ]
-      // analytics.send(eventList, function(result) {
-      //   if (result) {
-      //     console.log('统计浏览课程总时间发送成功！')
-      //   }
-      // })
+      var self = this
+      var actionList = ['openLessonTime']
+      Analytics.analytics(actionList,self.name)
     },
     burPoint:function(){
       var actionList = ['sourceOpen']
@@ -372,13 +360,6 @@ export default {
       this.guide = false
       guideLesson = false
       document.body.parentNode.style.overflow = "scroll"
-    },
-    checkLongin:function () {
-      var self = this
-      var currentUser = AV.User.current();
-      if (currentUser == null) {
-        self.$router.push({path:'/'})
-      }
     }
   }
 

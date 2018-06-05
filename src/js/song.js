@@ -14,7 +14,6 @@ export default {
   },
   mounted:function () {
     this.getLesson()
-    this.checkLongin()
     this.guide = guideSong
     if(this.guide){
       this.allHide = this.guide
@@ -53,13 +52,6 @@ export default {
         path:'/lesson/'+id
       })
       this.burPoint(subject,name)
-    },
-    checkLongin:function () {
-      var self = this
-      var currentUser = AV.User.current();
-      if (currentUser == null) {
-        self.$router.push({path:'/'})
-      }
     },
     next:function(){
       this.leader = true

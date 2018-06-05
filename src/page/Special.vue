@@ -34,7 +34,6 @@
         },
       mounted:function () {
         this.getLesson()
-        this.checkLongin()
       },
       methods:{
           getLesson:function () {
@@ -46,14 +45,7 @@
           },
           toSpecialSub:function (id) {
             this.$router.push({path:'/specialList/'+id})
-          },
-          checkLongin:function () {
-            var self = this
-            var currentUser = AV.User.current();
-            if (currentUser == null) {
-              self.$router.push({path:'/'})
-            }
-          },
+          }
       }
     }
 </script>
