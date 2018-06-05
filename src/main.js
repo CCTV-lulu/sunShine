@@ -14,6 +14,16 @@ import Sublist from '@/components/Sublist'
 import VueMarkdown from 'vue-markdown'
 import Analytics from "@/js/analytics.js"
 
+
+Vue.config.productionTip = false
+Vue.use(ElementUI)
+Vue.component('SiderBar', SiderBar)
+Vue.component('Header',Header)
+Vue.component('Audio',Audio)
+Vue.component('Video',Video)
+Vue.component('VueMarkdown',VueMarkdown)
+Vue.component('Sublist',Sublist)
+
 Vue.http.get('../static/config.json').then(function (result) {
   var APP_ID = result.body.appId;
   var APP_KEY = result.body.appKey;
@@ -30,17 +40,8 @@ Vue.http.get('../static/config.json').then(function (result) {
   checkoutUser()
 })
 
-
-Vue.config.productionTip = false
-Vue.use(ElementUI)
-Vue.component('SiderBar', SiderBar)
-Vue.component('Header',Header)
-Vue.component('Audio',Audio)
-Vue.component('Video',Video)
-Vue.component('VueMarkdown',VueMarkdown)
-Vue.component('Sublist',Sublist)
-
 /* eslint-disable no-new */
+
 function checkoutUser() {
   router.beforeEach((to, from, next) => {
     var currentUser = AV.User.current();
@@ -50,7 +51,7 @@ function checkoutUser() {
       if (currentUser) {
         Vue.prototype.currentUser = currentUser.toJSON().username
         burPointOpenApp(currentUser.toJSON().username)
-        setInterval(function () {
+        window.GLOBAL.userTime=setInterval(function () {
           burPointUseTime(currentUser.toJSON().username)
         },60000)
         next()

@@ -93,6 +93,7 @@
         logout:function () {
           AV.User.logOut()
           this.$router.push({path: '/'})
+          clearInterval(GLOBAL.userTime)
           document.body.parentNode.style.overflow = "scroll"
         },
         recovery:function () {
