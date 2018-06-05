@@ -1,4 +1,5 @@
 import Data from "@/js/server.js"
+import Analytics from "@/js/analytics.js"
 export default {
   data() {
     return {
@@ -63,21 +64,8 @@ export default {
       // })
     },
     burPoint:function(){
-      // var self = this
-      // var eventList =[
-      //   {
-      //     event: '资源被打开数',
-      //     attr: {
-      //       资源被打开数:'资源被打开数',
-      //     },
-      //     duration: 2100
-      //   },
-      //   ]
-      // analytics.send(eventList, function(result) {
-      //   if (result) {
-      //     console.log('统计数据发送成功！')
-      //   }
-      // })
+      var actionList = ['sourceOpen']
+      Analytics.analytics(actionList)
     },
     getParams: function () {
       var self = this
