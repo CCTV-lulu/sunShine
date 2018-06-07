@@ -38,6 +38,7 @@ Vue.http.get('../static/config.json').then(function (result) {
     version: '1.8.6',
   })
   checkoutUser()
+  init();
 })
 
 /* eslint-disable no-new */
@@ -50,10 +51,6 @@ function checkoutUser() {
     } else {
       if (currentUser) {
         Vue.prototype.currentUser = currentUser.toJSON().username
-        burPointOpenApp(currentUser.toJSON().username)
-        window.GLOBAL.userTime=setInterval(function () {
-          burPointUseTime(currentUser.toJSON().username)
-        },60000)
         next()
       }
       else {
@@ -62,7 +59,6 @@ function checkoutUser() {
     }
   });
 
-  init();
 }
 function init() {
   new Vue({
@@ -71,7 +67,13 @@ function init() {
     components: { App },
     template: '<App/>'
   })
+  var currentUser = AV.User.current();
+  burPointOpenApp(currentUser.toJSON().username)
+  window.GLOBAL.userTime=setInterval(function () {
+    burPointUseTime(currentUser.toJSON().username)
+  },60000)
 }
+
 function burPointOpenApp (userName){
   var self = this
   var actionList = ['appUserNum']

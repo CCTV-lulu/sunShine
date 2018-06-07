@@ -6,8 +6,7 @@ function checkUserRole(cb) {
     var isUser  = true;
     for(let i = 0; i< roles.length; i++){
       if(roles[i].toJSON().name === 'developer'){
-        // isUser = false;
-        isUser = true
+        isUser = false;
         break
       }
     }
