@@ -68,21 +68,38 @@ function init() {
     template: '<App/>'
   })
   var currentUser = AV.User.current();
-  burPointOpenApp(currentUser.toJSON().username)
-  window.GLOBAL.userTime=setInterval(function () {
-    burPointUseTime(currentUser.toJSON().username)
-  },60000)
+  burPointOpenApp(currentUser.toJSON().objectId)
+  checkClose()
 }
 
-function burPointOpenApp (userName){
+function burPointOpenApp (userId){
   var self = this
-  var actionList = ['appUserNum']
-  Analytics.analytics(actionList,'',userName,'')
+  Analytics.openApp(userId)
 }
 function burPointUseTime(userName) {
   var self = this
   var actionList = ['userUseTime']
   Analytics.analytics(actionList,'',userName,'')
+}
+function checkClose() {
+  console.log('-------------')
+  window.onbeforeunload = function(e) {
+    e = e || window.event;
+    var msg = "您确定要离开此页面吗？";
+
+    // IE
+    e.cancelBubble = true;
+    e.returnValue = msg;
+
+    // Firefox
+    if(e.stopPropagation) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    // Chrome / Safari
+    alert(msg)
+  };
 }
 
 

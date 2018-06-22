@@ -16,8 +16,6 @@ export default {
       }
       if(!isAdmin) return cb(false);
       else return cb(true)
-    }).catch(function(){
-      cb(false)
     })
   },
     getAllData:function (cb) {

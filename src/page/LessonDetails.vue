@@ -16,12 +16,12 @@
           <p class="titel">教学材料</p>
 
           <el-col v-if="Video" v-for="(item, index) in videoList" :key="index">
-            <img src="@/assets/audio.png" class="materialList" @click="playVideo(item.videoId)"/>
+            <img src="@/assets/audio.png" class="materialList" @click="playVideo(item.videoId,item.videoName)"/>
             <p class="listText">{{item.videoName}}</p>
           </el-col>
 
           <el-col v-if="Audio">
-            <img src="@/assets/video.png" class="materialList" @click="playAudio"/>
+            <img src="@/assets/video.png" class="materialList" @click="playAudio(audioName)"/>
             <p class="listText">{{audioName}}</p>
           </el-col>
           <el-col v-if="Atlas">

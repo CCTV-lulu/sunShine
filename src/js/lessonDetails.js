@@ -51,9 +51,10 @@ export default {
       var actionList = ['openLessonTime']
       Analytics.analytics(actionList,self.name)
     },
-    burPoint:function(){
+    burPoint:function(resName,resType){
       var actionList = ['sourceOpen']
-      Analytics.analytics(actionList)
+      var userId = AV.User.current().toJSON().objectId
+      Analytics.openRes(resName,userId,resType)
     },
     getParams: function () {
       var self = this
@@ -108,20 +109,20 @@ export default {
       clearInterval(this.lessonTime)
       this.$router.back(-1)
     },
-    playVideo:function (id) {
+    playVideo:function (id,resName) {
       var self = this
-      self.burPoint()
+      self.burPoint(resName,'视频')
       self.$router.push({
         path:'/video/'+id,
       })
     },
-    playAudio: function () {
-      this.burPoint()
+    playAudio: function (resName) {
+      this.burPoint(resName,'音频')
       this.showAudio = true
     },
     playImage: function () {
       var self = this
-      self.burPoint()
+      self.burPoint(self.name,'绘本')
       self.$router.push({
         path:'/pictureLoop/'+self.atlasId,
       })

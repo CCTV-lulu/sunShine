@@ -23,9 +23,8 @@ export default {
   methods:{
     burPoint: function (subject,lessonName){
       var self = this
-      var actionList = ['openLessonNum','openLessonAllNum','subjectLessonNum','userOpenLessonNum']
-      var userName = AV.User.current().toJSON().username
-      Analytics.analytics(actionList,lessonName,userName,subject)
+      var userId = AV.User.current().toJSON().objectId
+      Analytics.openLesson(lessonName,userId)
     },
     getLesson:function () {
       var self = this
