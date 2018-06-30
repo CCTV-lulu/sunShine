@@ -25,4 +25,4 @@
 
 <script src="@/js/music.js"></script>
 
-<style src="@/css/music.css"></style>
+<style scoped src="@/css/music.css"></style>

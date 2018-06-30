@@ -4,12 +4,12 @@ function checkUserRole(cb) {
   if (!currentUser) return cb(false);
   currentUser.getRoles().then(function(roles){
     var isUser  = true;
-    // for(let i = 0; i< roles.length; i++){
-    //   if(roles[i].toJSON().name === 'developer'){
-    //     isUser = false;
-    //     break
-    //   }
-    // }
+    for(let i = 0; i< roles.length; i++){
+      if(roles[i].toJSON().name === 'developer'){
+        isUser = false;
+        break
+      }
+    }
     if(!isUser) return cb(false);
     else return cb(true)
   })
@@ -85,14 +85,14 @@ export default {
   //   })
   // },
   // analyticEvent:analyticEvent
-  openLesson:function (lessonName,userId) {
+  openLesson:function (lessonId,userId) {
     checkUserRole(function (status) {
       if(status){
         var OpenLessonFolder = AV.Object.extend('UserAction');
         var accessRecord = new OpenLessonFolder();
         accessRecord.set('userId',userId);
         accessRecord.set('equipment','web');
-        accessRecord.set('lessonId',lessonName);
+        accessRecord.set('lessonId',lessonId);
         accessRecord.set('behaviorType','openLesson');
         accessRecord.save().then(function () {
           console.log('添加打开课程数据成功')
@@ -117,6 +117,21 @@ export default {
       }
     })
 
+  },
+  useApp:function (userId,startTime,endTime) {
+    checkUserRole(function (status) {
+      if(status){
+        var OpenLessonFolder = AV.Object.extend('UserAction');
+        var accessRecord = new OpenLessonFolder();
+        accessRecord.set('equipment','web');
+        accessRecord.set('userId',userId);
+        accessRecord.set('behaviorType','useApp');
+        accessRecord.set('usageTime',(endTime-startTime).toString())
+        accessRecord.save().then(function () {
+          console.log('添加使用时长数据成功')
+        })
+      }
+    })
   },
   openRes:function (resName,userId,resType) {
     checkUserRole(function (status) {

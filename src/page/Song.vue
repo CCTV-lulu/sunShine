@@ -38,4 +38,4 @@
 
 <script src="@/js/song.js"></script>
 
-<style src="@/css/song.css"></style>
+<style scoped src="@/css/song.css"></style>

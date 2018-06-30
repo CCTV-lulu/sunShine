@@ -38,7 +38,6 @@ Vue.http.get('../static/config.json').then(function (result) {
     version: '1.8.6',
   })
   checkoutUser()
-  init();
 })
 
 /* eslint-disable no-new */
@@ -58,7 +57,7 @@ function checkoutUser() {
       }
     }
   });
-
+  init();
 }
 function init() {
   new Vue({
@@ -68,38 +67,25 @@ function init() {
     template: '<App/>'
   })
   var currentUser = AV.User.current();
-  burPointOpenApp(currentUser.toJSON().objectId)
-  checkClose()
+  if(currentUser != null){
+    burPointOpenApp(currentUser.toJSON().objectId)
+    localStorage.setItem('openTime',new Date().getTime())
+    checkClose(currentUser.toJSON().objectId,window.localStorage.getItem('openTime'))
+  }
+
 }
 
 function burPointOpenApp (userId){
   var self = this
   Analytics.openApp(userId)
 }
-function burPointUseTime(userName) {
-  var self = this
-  var actionList = ['userUseTime']
-  Analytics.analytics(actionList,'',userName,'')
+function checkClose(userId,startTime) {
+  window.addEventListener("unload", function (event) {
+    var endtime=new Date().getTime()
+    Analytics.useApp(userId,startTime,endtime)
+  });
 }
-function checkClose() {
-  console.log('-------------')
-  window.onbeforeunload = function(e) {
-    e = e || window.event;
-    var msg = "您确定要离开此页面吗？";
 
-    // IE
-    e.cancelBubble = true;
-    e.returnValue = msg;
 
-    // Firefox
-    if(e.stopPropagation) {
-      e.stopPropagation();
-      e.preventDefault();
-    }
-
-    // Chrome / Safari
-    alert(msg)
-  };
-}
 
 

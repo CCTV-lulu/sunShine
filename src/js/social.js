@@ -12,10 +12,10 @@ export default {
     this.getLesson()
   },
   methods: {
-    burPoint: function (subject,lessonName){
+    burPoint: function (subject,lessonId){
       var self = this
       var userId = AV.User.current().toJSON().objectId
-      Analytics.openLesson(lessonName,userId)
+      Analytics.openLesson(lessonId,userId)
     },
     getLesson:function () {
       var self = this
@@ -41,7 +41,7 @@ export default {
       this.$router.push({
         path:'/lesson/'+id
       })
-      this.burPoint(subject,name)
+      this.burPoint(subject,id)
     },
   }
 }

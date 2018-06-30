@@ -29,10 +29,8 @@ export default {
       var localUser = window.localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) :[]
       AV.User.logInWithMobilePhoneSmsCode(self.telNumber,self.codeNumber).then(function (success) {
         self.sendSuccessMessage("登录成功")
-        self.burPointOpenApp(AV.User.current().toJSON().username)
-        setInterval(function () {
-          self.burPointUseTime(AV.User.current().toJSON().username)
-        },60000)
+        Analytics.openApp(AV.User.current().toJSON().objectId)
+        localStorage.setItem('openTime',new Date().getTime())
         var user = AV.User.current().toJSON().mobilePhoneNumber
         if (localUser.indexOf(user) == -1){
           localUser.push(user)
@@ -93,16 +91,6 @@ export default {
         type: 'success',
         message: message
       })
-    },
-    burPointOpenApp (userName){
-      var self = this
-      var actionList = ['appUserNum']
-      Analytics.analytics(actionList,'',userName,'')
-    },
-    burPointUseTime(userName) {
-      var self = this
-      var actionList = ['userUseTime']
-      Analytics.analytics(actionList,'',userName,'')
     }
 
   }

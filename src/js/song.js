@@ -50,7 +50,7 @@ export default {
       this.$router.push({
         path:'/lesson/'+id
       })
-      this.burPoint(subject,name)
+      this.burPoint(subject,id)
     },
     next:function(){
       this.leader = true

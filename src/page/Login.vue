@@ -33,4 +33,4 @@
 </template>
 
 <script src="@/js/login.js"></script>
-<style src="@/css/login.css" ></style>
+<style scoped src="@/css/login.css" ></style>

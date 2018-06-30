@@ -41,7 +41,7 @@ export default {
       this.$router.push({
         path:'/lesson/'+id
       })
-      this.burPoint(subject,name)
+      this.burPoint(subject,id)
     },
   }
 
