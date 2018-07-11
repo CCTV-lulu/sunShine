@@ -92,8 +92,8 @@
           document.body.parentNode.style.overflow = "hidden"
         },
         logout:function () {
-          // AV.User.logOut()
-          // this.$router.push({path: '/'})
+          AV.User.logOut()
+          this.$router.push({path: '/'})
           var currentUser = AV.User.current();
           var endtime=new Date().getTime()
           Analytics.useApp(currentUser.toJSON().objectId,window.localStorage.getItem('openTime'),endtime)
