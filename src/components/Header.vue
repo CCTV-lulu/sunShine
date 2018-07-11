@@ -97,6 +97,7 @@
           var currentUser = AV.User.current();
           var endtime=new Date().getTime()
           Analytics.useApp(currentUser.toJSON().objectId,window.localStorage.getItem('openTime'),endtime)
+          localStorage.removeItem("useTime");
           document.body.parentNode.style.overflow = "scroll"
         },
         recovery:function () {

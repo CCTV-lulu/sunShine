@@ -60,4 +60,4 @@
 
 <script src="@/js/lessonDetails.js"></script>
 
-<style scoped src="@/css/lessonDetails.css"></style>
+<style  src="@/css/lessonDetails.css"></style>
