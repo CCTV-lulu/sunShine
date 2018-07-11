@@ -119,6 +119,7 @@ export default {
 
   },
   useApp:function (userId,startTime,endTime) {
+    console.log(endTime)
     checkUserRole(function (status) {
       if(status){
         var OpenLessonFolder = AV.Object.extend('UserAction');

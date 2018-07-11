@@ -70,7 +70,13 @@ function init() {
   if(currentUser != null){
     burPointOpenApp(currentUser.toJSON().objectId)
     localStorage.setItem('openTime',new Date().getTime())
-    checkClose(currentUser.toJSON().objectId,window.localStorage.getItem('openTime'))
+    saveNewTime()
+    var userTimeNum = localStorage.getItem('useTime')
+    if(userTimeNum){
+      checkClose(currentUser.toJSON().objectId,Number(userTimeNum)*30000)
+      localStorage.removeItem("useTime");
+    }
+
   }
 
 }
@@ -79,21 +85,17 @@ function burPointOpenApp (userId){
   var self = this
   Analytics.openApp(userId)
 }
-function checkClose(userId,startTime) {
-  window.addEventListener("unload", function (event) {
-    var endtime=new Date().getTime()
-    Analytics.useApp(userId,startTime,endtime)
-  });
+function checkClose(userId,endtime) {
+    Analytics.useApp(userId,0,endtime)
 }
-function test() {
-  var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-  var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
-  var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
-  var isIE11 = userAgent.indexOf("rv:11.0") > -1; //判断是否是IE11浏览器
-  var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
-  
+function saveNewTime() {
+  setInterval(function () {
+    var timeNum = localStorage.getItem('useTime')
+    if(timeNum){
+      localStorage.setItem('useTime',Number(timeNum)+1)
+    }else {
+      localStorage.setItem('useTime',1)
+    }
+  },30000)
 }
-
-
-
 
