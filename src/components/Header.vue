@@ -92,12 +92,12 @@
           document.body.parentNode.style.overflow = "hidden"
         },
         logout:function () {
-          AV.User.logOut()
-          this.$router.push({path: '/'})
           var currentUser = AV.User.current();
           var endtime=new Date().getTime()
           Analytics.useApp(currentUser.toJSON().objectId,window.localStorage.getItem('openTime'),endtime)
           localStorage.removeItem("useTime");
+          AV.User.logOut()
+          this.$router.push({path: '/'})
           document.body.parentNode.style.overflow = "scroll"
         },
         recovery:function () {
